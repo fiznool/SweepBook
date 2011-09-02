@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  date: 2011-09-02 08:11:02
+  info: MyText
+  forcewallpostsoff: false
+  forceanonymousdonations: false
+
+two:
+  name: MyString
+  date: 2011-09-02 08:11:02
+  info: MyText
+  forcewallpostsoff: false
+  forceanonymousdonations: false
