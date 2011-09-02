@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event: 
+  competitor: 
+  donator_id: MyString
+  external_uid: MyString
+  value: MyString
+
+two:
+  event: 
+  competitor: 
+  donator_id: MyString
+  external_uid: MyString
+  value: MyString

@@ -2,6 +2,7 @@
 
 */
 
+
 (function( $, undefined ) {
 	
 	var DonationChoice = function(competitor_id, choice) {
@@ -186,24 +187,17 @@
 			<% end %>
 		};
 		
-		var sliderChoices = [
-		<% @values.each do |v| %>
-		"<%= Time.at(60*v).gmtime.strftime('%R') %>",
-		<% end %>
-		];
-		
-		for(var i=sliderChoices.length-1; i>=0; i--) {
-			var sliderChoice = sliderChoices[i];
-			for (var id in competitors) {
-				// id is the competitor id, use to get free/taken from the db?
-				var choiceTaken = false;
-				var competitorChoices = competitors[id];
-				competitorChoices.push(new DonationStatus(sliderChoice, choiceTaken))
-			}
-		}
+                var competitorChoices;
+                <% @competitors.each do |c| %>
+                competitorChoices = competitors["<%= c.facebook_id %>"];
+                <% @data[c.id].sort.reverse.each do |value,taken| %>
+                competitorChoices.push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%R') %>", <%= taken %>));
+                <% end %>
+                <% end %>	
+
 		
 		var slider_min = 0;
-		var slider_max = sliderChoices.length - 1;
+		var slider_max = <%= @values.length %> -1;
 		var slider_step = 1;
 
 		$(".sweep-slider").slider( {

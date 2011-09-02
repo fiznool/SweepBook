@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110902115645) do
+ActiveRecord::Schema.define(:version => 20110902170619) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "event_id"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(:version => 20110902115645) do
     t.integer  "result_option_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "donations", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "competitor_id"
+    t.string   "donator_id"
+    t.string   "external_uid"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "choice"
   end
 
   create_table "events", :force => true do |t|
