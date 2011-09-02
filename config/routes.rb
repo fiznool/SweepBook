@@ -26,7 +26,8 @@ Sweepbook::Application.routes.draw do
   #       get 'sold'
   #     end
   #   end
-
+  #resources :events do
+  #end
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
@@ -40,6 +41,8 @@ Sweepbook::Application.routes.draw do
   #       get 'recent', :on => :collection
   #     end
   #   end
+  resources :events do
+  end
 
   # Sample resource route within a namespace:
   #   namespace :admin do

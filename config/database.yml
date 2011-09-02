@@ -1,10 +1,12 @@
 # SQLite version 3.x
 #   gem install sqlite3
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql 
+  encoding: unicode
+  database: sweepbook_development
   pool: 5
-  timeout: 5000
+  username: postgres
+  password: 500tps 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -16,7 +18,10 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  encoding: unicode
+  adapter: postgresql
+  username: ykluccxdce
+  port: 5432
+  host: ec2-107-20-227-173.compute-1.amazonaws.com
+  database: ykluccxdce
+  password: LC3_olbcN07pT2Gh2wS6
