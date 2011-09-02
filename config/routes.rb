@@ -1,4 +1,6 @@
 Sweepbook::Application.routes.draw do
+  get "js/slider"
+
   get "home/index"
 
   # The priority is based upon order of creation:

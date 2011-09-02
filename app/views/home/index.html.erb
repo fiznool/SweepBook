@@ -1,117 +1,106 @@
   <div id="container" class="container">
     <header>
-			<h1 id="app_title" class="heading">All hail, mighty <strong>SweepBook</strong></h1>
-			<h1 class="heading"><small>When will our runners finish? Drag the slider and donate now!</small><h1>
+      <h1 id="app_title" class="heading">All hail, mighty <strong>SweepBook</strong></h1>
+      <h1 class="heading"><small>When will our runners finish? Drag the slider and donate now!</small>
     </header>
 		
     <div id="main" role="main">
-		  <div class="row">
-			  <div id="sweep_table" class="span7 columns">
-				  <!-- Here begins the sweep table, all contents in the #sweep_table div should be dynamically created on the server side -->
-					<div id="sweep-drag-n-drop" style="display: none">
-						<div id="sweep-table-drag-box-row" class="row">
-							<div class="span1 columns">&nbsp;</div>
-							<div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
-							<div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
-							<div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
-							<div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
-						</div>
-						<div id="sweep-table-header-row" class="row">
-							<h4>
-							<div class="span1 columns">Time</div>		<!-- Dynamic: enter correct column title -->
-							<div class="span2 columns sweep-table-competitor-name">Runner 1</div> <!-- Dynamic - enter up to 4 rows with competitor names -->
-							<div class="span2 columns sweep-table-competitor-name">Runner 2</div>
-							<div class="span2 columns sweep-table-competitor-name">Runner 3</div>
-							<div class="span2 columns sweep-table-competitor-name">Runner 4</div>
-							</h4>
-						</div>
-						<!-- Add a new row for every ResultOption -->
-						<div class="row">
-							<div class="span1 columns time-column">Less than 1:30.00</div> <!-- Dynamic: fill in from DB -->
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div> <!-- Dynamic - for each competitor create a Free or Chosen cell -->
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-						</div>
-						<div class="row">
-							<div class="span1 columns time-column">1:30.00 to 1:59:00</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-chosen-cell">Chosen</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-						</div>
-						<div class="row">
-							<div class="span1 columns time-column">2:00:00 to 2:29:59</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-						</div>
-						<div class="row">
-							<div class="span1 columns time-column">2:30.00 or more</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-chosen-cell">Chosen</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-						</div>
-					</div>
-					<div id="sweep-vertical-slider">
-						<div id="sweep-table-header-row" class="row">
-							<h4>
-								<div class="span3 columns sweep-table-competitor-name">Joe</div> <!-- Dynamic - enter up to 4 rows with competitor names -->
-								<div class="span3 columns sweep-table-competitor-name">Spen</div>
-							</h4>
-						</div>
-						<div class="row">
-							<div id="slider-label-1" class="span3 columns time-column">Less than 1:30:00</div>
-							<div id="slider-label-2" class="span3 columns time-column">Less than 1:30:00</div>
-						</div>
-						<div class="row">
-						<div class="span3 columns slider-ctn"><div id="slider-1" data-slider-id="1" class="sweep-slider"></div></div>
-						<div class="span3 columns slider-ctn"><div id="slider-1" data-slider-id="2" class="sweep-slider"></div></div>
-						</div>
-					</div>
-					<!-- Ends table -->
-				</div>
-				
-				<div id="sweep_actions" class="span6 columns">
-					<div id="donate_btn_container">
-					  <!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
-						<a id="donate_btn" href="#" class="btn large primary" style="width: 270px; margin: 0px 20px; text-align:center;">Donate Now!</a>
-					</div>
-					<div id="event_info" class="alert-message block-message info">
-					  <!-- Dynamic: all content in the #event_info div should be pulled from the DB -->
-						<h3 class="heading">Joe & Spen's GNR 2011<h3>
-					
-						<p class="event_info_para">
-							This man has been trying to light a fire for 6 months. Please donate to help us get to our total of £300. Then we can buy him a gas BBQ.
-						</p>
-						<%= image_tag "goulahee.jpg" %>
-					</div>
-				</div>
-				
-				<div id="donate_modal" class="modal" style="display:none;">
-          <div class="modal-header">
-            <h3>Nice One!</h3>
-            <!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
-						<a id="donate_modal_close" href="#" class="close">×</a>
-          </div>
-          <div class="modal-body">
-            <p>Thanks for choosing! Now for your donation...</p>
-						<p>Don't be shy, press the button below to bring up a new window where you can donate. We suggest a donation of £3 per selection, but its totally up to you. It's for a good cause, after all... :)</p>
-          </div>
-          <div class="modal-footer">
-					  <!-- Dynamic: insert href from database -->
-            <a href="http://www.justgiving.com" target="_blank" class="btn primary">Donate!</a>
-          </div>
-        </div>
-				
-			</div>
-			
+      <div class="row">
+        <div id="sweep_table" class="span7 columns">
+          <!-- Here begins the sweep table, all contents in the #sweep_table div should be dynamically created on the server side -->
+	  <div id="sweep-drag-n-drop" style="display: none">
+	    <div id="sweep-table-drag-box-row" class="row">
+	      <div class="span1 columns">&nbsp;</div>
+              <% @competitors.each do |c|%>
+	        <div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
+              <% end %>
+	    </div>
+
+            <div id="sweep-table-header-row" class="row">
+	      <h4>
+	        <div class="span1 columns">Time</div>		<!-- Dynamic: enter correct column title -->
+                <% @competitors.each do |c| %>
+		  <div class="span2 columns sweep-table-competitor-name"><%= c.facebook_id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
+                <% end %>
+              </h4>
+	    </div>
+
+	    <% @i = @event.time_min %>
+            <% while @i < @event.time_max do %>
+              <div class="row">
+                <div class="span1 columns time-column"><%= Time.at(@i*60).gmtime.strftime('%R') %></div>
+                <% @competitors.each do |c| %>
+                  <div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+                <% end %>
+              </div>             
+              <% @i = @i + @event.time_interval %>
+            <% end %>
+	  </div>
+          
+          <div id="sweep-vertical-slider">
+	    <div id="sweep-table-header-row" class="row">
+	      <h4>
+                <% @competitors.each do |c| %>
+  	          <div class="span3 columns sweep-table-competitor-name"><%= c.facebook_id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
+                <% end %>
+	      </h4>
+	    </div>
+	
+          <div class="row">
+            <% @i = 1 %>
+            <% while @i < @competitors.size + 1 do %>
+	      <div id="slider-label-<%= @i %>" class="span3 columns time-column"><%= Time.at(@event.time_min*60).gmtime.strftime('%R') %></div>
+              <% @i = @i + 1 %>
+            <% end %>
+	  </div>
+
+	  <div class="row">
+            <% @i = 1 %>
+            <% while @i < @competitors.size + 1 do %>
+	      <div class="span3 columns slider-ctn"><div id="slider-<%= @i %>" data-slider-id="<%= @i %>" class="sweep-slider"></div></div>
+              <% @i = @i + 1 %>
+            <% end %>
+	  </div>
+	</div>
+      <!-- Ends table -->
     </div>
-  </div> <!--! end of #container -->
+				
+    <div id="sweep_actions" class="span6 columns">
+      <div id="donate_btn_container">
+      <!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
+        <a id="donate_btn" href="#" class="btn large primary" style="width: 270px; margin: 0px 20px; text-align:center;">Donate Now!</a>
+      </div>
+      <div id="event_info" class="alert-message block-message info">
+        <!-- Dynamic: all content in the #event_info div should be pulled from the DB -->
+        <h3 class="heading"><%= @event.name %>
+	<p class="event_info_para"><%= @event.info %></p>	
+	<%= image_tag "goulahee.jpg" %>
+      </div>
+    </div>
+				
+    <div id="donate_modal" class="modal" style="display:none;">
+      <div class="modal-header">
+        <h3>Nice One!</h3>
+        <!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
+        <a id="donate_modal_close" href="#" class="close">×</a>
+      </div>
+      <div class="modal-body">
+        <p>Thanks for choosing! Now for your donation...</p>
+	<p>Don't be shy, press the button below to bring up a new window where you can donate. We suggest a donation of £3 per selection, but its totally up to you. It's for a good cause, after all... :)</p>
+      </div>
+      <div class="modal-footer">
+        <!-- Dynamic: insert href from database -->
+        <a href="http://www.justgiving.com" target="_blank" class="btn primary">Donate!</a>
+      </div>
+    </div>
+				
+  </div>
+			
+</div>
+</div> <!--! end of #container -->
 
 	<!-- This div is to grey out the entire background when the modal appears -->
 	<!-- TODO check X-platform compatibility -->
-  <div id="modal_fade_overlay">
-  </div>
+<div id="modal_fade_overlay">
+</div>
+<%= javascript_include_tag '/js/slider.js' %>

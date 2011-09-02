@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event: 
+  facebook_id: MyString
+  dontation_link: MyString
+  time_min: 
+  time_max: 
+  time_interval: 
+  time_result: 
+  result_story: MyText
+  result_option: 
+
+two:
+  event: 
+  facebook_id: MyString
+  dontation_link: MyString
+  time_min: 
+  time_max: 
+  time_interval: 
+  time_result: 
+  result_story: MyText
+  result_option: 
