@@ -12,6 +12,7 @@ gem 'pg'
 gem 'json'
 gem 'mogli'
 gem 'ruby-hmac'
+gem 'facebooker2'
 # Use unicorn as the web server
 # gem 'unicorn'
 
