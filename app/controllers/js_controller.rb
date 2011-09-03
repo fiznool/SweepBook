@@ -13,7 +13,7 @@ class JsController < ApplicationController
     @data       = Hash.new
 
     @competitors = @event.competitors
-    
+
     @competitors.each do |c|
       @data[c.id] = Hash.new 
       @i = @event.time_min

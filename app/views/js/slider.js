@@ -14,9 +14,10 @@
 		toString: function() { return this.competitor_id + " with time " + this.choice; }
 	}
 	
-	var DonationStatus = function(donationChoice, choiceTaken) {
+	var DonationStatus = function(donationChoice, value, choiceTaken) {
 		this.donationChoice = donationChoice;
 		this.choiceTaken = choiceTaken;
+                this.value = value;
 	}
 	
 	DonationStatus.prototype = {
@@ -59,13 +60,15 @@
 				
 				var choicesArray = new Array();
 				$(".sweep-table-competitor-name").each(function(i) {
-					choicesArray[i] = new DonationChoice($(this).data("competitor-id"), $("#slider-label-"+(i+1)).text());
+                                        var id = $(this).data("competitor-id");
+				//	choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).text());
+                                        choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).data("value"));
 				});
 				
 				$.ajax({
 					type: 'POST',
-					url: "choices/save",
-					data: JSON.stringify(choicesArray),
+					url: "events/<%= @event.id %>/donations",
+					data:  { json: JSON.stringify(choicesArray) },
 					datatype: 'JSON',
 					success: function() {
 						hide_spinner();
@@ -183,16 +186,17 @@
 
 		var competitors = {
 			<% @competitors.each do |c| %>
-			"<%= c.facebook_id %>": new Array(),
+			"<%= c.id %>": new Array(),
 			<% end %>
 		};
 		
                 var competitorChoices;
                 <% @competitors.each do |c| %>
-                competitorChoices = competitors["<%= c.facebook_id %>"];
+                competitorChoices = competitors["<%= c.id %>"];
                 <% @data[c.id].sort.reverse.each do |value,taken| %>
-                competitorChoices.push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%R') %>", <%= taken %>));
-                <% end %>
+                competitorChoices.push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%R') %>", <%= value %>, <%= taken %>));
+                <% end %> 
+                $("#slider-label-"+<%= c.id %>).data('value', competitorChoices[competitorChoices.length-1].value); 
                 <% end %>	
 
 		
@@ -212,6 +216,7 @@
 				var competitorChoices = competitors[slider_id];
 				var label_to_write = competitorChoices[index].donationChoice;
 				$("#slider-label-"+slider_id).html(label_to_write);
+                                $("#slider-label-"+slider_id).data('value',competitorChoices[index].value);
 			}
 		} );
 	});

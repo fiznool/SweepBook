@@ -44,6 +44,7 @@ Sweepbook::Application.routes.draw do
   #     end
   #   end
   resources :events do
+    resources :donations
   end
 
   # Sample resource route within a namespace:
