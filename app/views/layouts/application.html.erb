@@ -43,7 +43,7 @@
     <% if current_facebook_user %>
       <%= fb_logout_link("Logout of fb",request.url) %>
     <% else %>
-      <%= fb_login_and_redirect(events_path) %>
+      <%= fb_login_and_redirect('/', :perms => "email,publish_stream" ) %>
     <% end %> 
 
     <%= yield %>
