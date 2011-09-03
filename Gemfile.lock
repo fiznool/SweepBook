@@ -33,6 +33,9 @@ GEM
     crack (0.1.8)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    facebooker2 (0.0.12)
+      mogli (>= 0.0.12)
+      ruby-hmac
     hashie (1.1.0)
     httparty (0.7.8)
       crack (= 0.1.8)
@@ -87,6 +90,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  facebooker2
   json
   mogli
   pg
