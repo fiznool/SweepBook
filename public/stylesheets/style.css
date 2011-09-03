@@ -258,8 +258,13 @@ td { vertical-align: top; }
   width: 100%;
 }
 
-.time-column {
-  text-align: center;
+.slider-label {
+  	text-align: center;
+	color: green;
+}
+
+.slider-label-taken {
+	color: red;
 }
 
 .sweep-cell {

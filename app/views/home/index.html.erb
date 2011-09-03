@@ -20,7 +20,7 @@
 
 					<div class="row">
 						<% @competitors.each do |c| %>
-						<div id="slider-label-<%= c.id %>" data-competitor-id="<%= c.id %>" class="span3 columns time-column"><%= Time.at(@event.time_min*60).gmtime.strftime('%R') %></div>
+						<div id="slider-label-<%= c.id %>" data-competitor-id="<%= c.id %>" class="span3 columns slider-label"></div>
 						<% end %>
 					</div>
 
