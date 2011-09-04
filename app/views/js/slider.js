@@ -228,17 +228,23 @@
 				} else {
 					$("#warning-alert:visible").hide();
 					
-					// Show modal, check if logged ini
-                                        FB.getLoginStatus(function(response) {
-                                          if(response.status === 'connected'){
-                                            //alert("Logged in");
-                                          }else{ 
-                                            FB.Event.subscribe('auth.login', function() { alert("Now logged in"); } ); 
-                                          }
-                                        });
-					$("#donate-action-next-btn").show();
-					$("#donation-external-btn").show();
-					move_donate_step(1);
+					// Show modal, check if logged in
+					FB.getLoginStatus(function(response) {
+						if(response.status === 'connected'){
+							$("#donate-action-next-btn").show();
+							$("#donation-external-btn").show();
+							move_donate_step(2);
+						} else { 
+							FB.Event.subscribe('auth.login', function() {
+								$("#donate-action-next-btn").show();
+								$("#donation-external-btn").show();
+								move_donate_step(2);
+							} );
+							$("#donate-action-next-btn").hide();
+							move_donate_step(1);
+						}
+					});
+					
 
 					$('#donate-modal-reveal').reveal({
 						animation: 'fadeAndPop',					//fade, fadeAndPop, none
