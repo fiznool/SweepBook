@@ -29,6 +29,7 @@
 	$(document).ready(function() {
 		
 		var competitors = new Array();
+                var donations;
 
 		<% @competitors.each do |c| %>
 		competitors["<%= c.id %>"] = new Array();
@@ -83,9 +84,9 @@
 					url: "events/<%= @event.id %>/donations",
 					data:  { json: JSON.stringify(choicesArray) },
 					datatype: 'JSON',
-					success: function() {
+					success: function(data) {
 						hide_spinner();
-
+                                                donations = data;
 						$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
 						$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
 
@@ -109,6 +110,15 @@
 
 				break;
 				case 3:
+                               
+                                for ( var i = 0; i < donations.length; i++) 
+                                {
+                                  $.ajax({
+                                           type: 'GET',
+                                           url: "events/<%= @event.id %>/donations/"+donations[i]+"/publish",
+                                           success: function() {},
+                                           failure: function() {}});
+                                }
 				$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
 				$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
 

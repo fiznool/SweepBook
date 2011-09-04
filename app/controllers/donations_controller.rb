@@ -42,7 +42,9 @@ class DonationsController < ApplicationController
 
   def publish
     @donation = Donation.find(params[:donation_id])
-    @post = Mogli::Post.new( :message => 'test' ) 
+    @post = Mogli::Post.new( :message => "I just guessed #{@donation.competitor.name}" + \
+                                         "will run the GNR in #{Time.at(@donation.choice.to_i*60).gmtime.strftime('%R')}" + \
+                                         " using Sweep on Facebook" ) 
     if current_facebook_user
       current_facebook_user.fetch
       current_facebook_user.feed_create( @post )
