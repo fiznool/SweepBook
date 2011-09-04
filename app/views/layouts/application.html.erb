@@ -46,10 +46,25 @@
 
   <div id="fb-root"></div>
   <script>
+    var fbApiInit = false;
     window.fbAsyncInit = function() {
-      FB.init({appId: '155060017912139', status: true, cookie: true,
+      //var appId = '155060017912139';
+      var appId = '267611456596772';
+      FB.init({appId: appId, status: true, cookie: true,
                xfbml: true});
+      fbApiInit = true;
     };
+
+    function fbEnsureInit(callback) {
+      if(!window.fbApiInit){
+        setTimeout(function() { fbEnsureInit(callback);}, 50);
+      }else{
+        if(callback){
+          callback();
+        }
+      }
+    }
+
     (function() {
       var e = document.createElement('script'); e.async = true;
       e.src = document.location.protocol +

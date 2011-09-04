@@ -16,10 +16,11 @@
 		toString: function() { return this.name; }
 	}
 
-	var DonationStatus = function(donationText, donationValue, choiceTaken) {
+	var DonationStatus = function(donationText, donationValue, choiceTaken, donatorId) {
 		this.donationText = donationText;
 		this.donationValue = donationValue;
 		this.choiceTaken = choiceTaken;
+                this.donatorId = donatorId;
 	}
 
 	DonationStatus.prototype = {
@@ -36,16 +37,36 @@
 		toString: function() { return this.competitor_id + " with time " + this.choice; }
 	}
 
+        var Donator = function(facebook_id) {
+                this.facebook_id = facebook_id;
+                // Async, get the thumbnail
+                this.facebook_data = null; 
+                this.image = null;
+        }
+
+        Donator.prototype = {
+                toString: function() { return this.facebook_id; }
+        }
+
 
 	$(document).ready(function() {
 
 		var competitors = new Array();
-		var donations;
+                var donators    = new Array();
+                var donatorIds  = new Array();
 
+		var donations;
 		<% @competitors.each do |c| %>
 		competitors["<%= c.id %>"] = new Competitor("<%= c.id %>", "<%= c.name %>", "<%= c.image_url %>");
 		<% @data[c.id].sort.reverse.each do |value,taken| %>
-		competitors["<%= c.id %>"].donationStatus.push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%l hr %M min') %>", <%= value %>, <%= taken %>));
+                  <% if taken.is_a?(Donation) %>
+                    competitors["<%= c.id %>"].donationStatus.push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%l hr %M min') %>", <%= value %>, true, "<%= taken.facebook_id %>"));
+//                    donators[<%= taken.facebook_id %>] = 1; 
+                    donators["<%= taken.facebook_id %>"] = new Donator("<%= taken.facebook_id %>");
+                    donatorIds.push("<%= taken.facebook_id %>"); 
+                  <% else %>
+		    competitors["<%= c.id %>"].donationStatus.push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%l hr %M min') %>", <%= value %>, false, null));
+                  <% end %>
 		<% end %> 
 		<% end %>
 
@@ -301,29 +322,57 @@
 		var slider_max = <%= @values.length %> -1;
 		var slider_step = 1;
 
+
 		var updateSliderLabel = function(index, sliderEl, setImage) {
 			var cid = sliderEl.data("competitor-id");
 			var competitor = competitors[cid];
 			var donationStatus = competitor.donationStatus[index];
-			var donationText = donationStatus.donationText;
+			var donationText; 
 			var sliderHandleEl = sliderEl.children(".ui-slider-handle,a");
+                        var sliderContent;
+
 			if (setImage) {
 				sliderHandleEl.css("background-image", "url(../images/"+competitor.sliderImage+")");
+                                /*fbEnsureInit( function() {
+                                  for ( var i in donatorIds ) 
+                                  {
+                                    var d = donators[donatorIds[i]];
+
+                                    if(d && !d.facebook_data)
+                                    {
+                                      FB.api('/'+ i + '?fields=picture,name&type=square', function(r){
+                                        if(r.id && donators[r.id]){ 
+                                          donators[r.id].facebook_data = r;
+                                          donators[r.id].image = $('<img />').attr('src',r.picture);
+                                        }else if(r.name && donators[r.name]){
+                                          donators[r.name].facebook_data = r;
+                                          donators[r.name].image = $('<img />').attr('src',r.picture);
+                                        } 
+                                      });
+                                    }
+                                  }
+                                });*/
 			}
 			if (donationStatus.choiceTaken) {
-				//sliderLabelEl.html("<span>" + donationText + "</span> is taken");
-				//sliderHandleEl.html(donationText+"<br />is taken");
-				sliderHandleEl.html('<span class="ui-slider-tooltip ui-widget-content ui-corner-all">'+donationText+' is taken</span>');
-				//sliderLabelEl.addClass("slider-label-taken");
+                                donationText = donationStatus.donationText + ' is taken';
+                                if( !donators[donationStatus.donatorId].image )
+                                {
+                                  FB.api('/' + donationStatus.donatorId + '?fields=picture,name&type=square', function(r){ 
+                                    donators[donationStatus.donatorId].facebook_data = r;
+                                    donators[donationStatus.donatorId].image = $('<img />').attr('src',r.picture);
+                                  });
+                                }else{
+                                  donationText = donationText + ' by ' + donators[donationStatus.donatorId].facebook_data.name
+                                }
+                                sliderContent = '<span class="ui-slider-tooltip ui-widget-content ui-corner-all">'+donationText+'</span>';
+				sliderHandleEl.html(sliderContent);
 				sliderHandleEl.css("color", "red");
+                                sliderHandleEl.find('span').append(donators[donationStatus.donatorId].image);
 			} else {
-				//sliderLabelEl.html("<span>" + donationText + "</span> is free");
-				//sliderHandleEl.html(donationText+"<br />is free");
-				sliderHandleEl.html('<span class="ui-slider-tooltip ui-widget-content ui-corner-all">'+donationText+' is free</span>');
-				//sliderLabelEl.removeClass("slider-label-taken");
+                                donationText = donationStatus.donationText + ' is free';
+				sliderHandleEl.html('<span class="ui-slider-tooltip ui-widget-content ui-corner-all">'+donationText+'</span>');
 				sliderHandleEl.css("color", "");
 			}
-
 		}
 
 
@@ -363,6 +412,12 @@
 			}
 		});
 
+                //// Pre load some pictures!
+                //var donators = new Array();
+                //<% @donations.keys.each do |d| %>
+                //  donators[<%= d %>] = new Donator(<%= d %>);
+                //  $('body').append(donators[<%= d %>].image);
+                //<% end %>
 
 	});
 
