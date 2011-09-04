@@ -31,6 +31,10 @@
 
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
+    <!-- Facebook Javascript SDK -->
+    <div id="fb-root"></div>
+    <script src="//connect.facebook.net/en_GB/all.js"></script>   
+ 
     <!-- All JavaScript at the bottom, except for Modernizr / Respond.
          Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
          For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
@@ -39,13 +43,23 @@
 
   <body>
 
-    <%= fb_connect_async_js %>
-    <% if current_facebook_user %>
-      <%= fb_logout_link("Logout of fb",request.url) %>
-    <% else %>
-      <%= fb_login_and_redirect('/', :perms => "publish_stream" ) %>
-    <% end %> 
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({appId: '155060017912139', status: true, cookie: true,
+               xfbml: true});
+    };
+    (function() {
+      var e = document.createElement('script'); e.async = true;
+      e.src = document.location.protocol +
+      '//connect.facebook.net/en_GB/all.js';
+      document.getElementById('fb-root').appendChild(e);
+    }());
 
+  </script> 
+
+  <fb:login-button perms="email,offline_access"
+                 show-faces="true"></fb:login-button>
     <%= yield %>
 
 <!--    <iframe src="http://www.facebook.com/plugins/like.php?href=sweepbook.heroku.com"
