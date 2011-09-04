@@ -121,10 +121,10 @@
 				break;
 				case 4:
                                         var post_params = {};
-                                        post_params['name'] = 'I Donated to <%= @event.name %> using SweepBook';
+                                        post_params['name'] = 'I Donated to Joe and Spen for the <%= @event.name %> using SweepBook';
                                         post_params['link'] = 'http://apps.facebook.com/155060017912139/';
-                                        post_params['description'] = 'On SweepBook I backed Joe and Spen in the <%= @event.name %>.' +
-                                                                     'Joe and Spen are raising money for the MS Trust using Sweepbook - click below and you can '+
+                                        post_params['description'] = 'On SweepBook I backed Joe and Spen in the <%= @event.name %>. ' +
+                                                                     'Joe and Spen are raising money for the MS Trust using Sweepbook - click above and you can '+
                                                                      'play along too!';
 					for ( var i = 0; i < donations.length; i++) 
 					{
