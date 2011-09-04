@@ -42,7 +42,7 @@ class DonationsController < ApplicationController
 
   def publish
     @donation = Donation.find(params[:donation_id])
-    @post = Mogli::Post.new( :name => 'test', :link => 'test', :description => 'test' )
+    @post = Mogli::Post.new( :message => 'test' ) 
     if current_facebook_user
       current_facebook_user.fetch
       current_facebook_user.feed_create( @post )
