@@ -213,7 +213,14 @@
 				} else {
 					$("#warning-alert:visible").hide();
 					
-					// Show modal, check if logged in
+					// Show modal, check if logged ini
+                                        FB.getLoginStatus(function(response) {
+                                          if(response.status === 'connected'){
+                                            //alert("Logged in");
+                                          }else{ 
+                                            FB.Event.subscribe('auth.login', function() { alert("Now logged in"); } ); 
+                                          }
+                                        });
 					$("#donate-action-next-btn").show();
 					$("#donation-external-btn").show();
 					move_donate_step(1);
@@ -304,7 +311,6 @@
 					$("#competitor-name-"+cid).removeClass('competitor-name-active');
 				}
 			});
-
 
 
 		});
