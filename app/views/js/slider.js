@@ -85,37 +85,37 @@
 				show_spinner();
 
 				// Submit choices to server
+                                FB.api('/me', function(response) {
+  				  var choicesArray = new Array();
+				  $(".sweep-table-competitor-name").each(function(i) {
+			  	    var id = $(this).data("competitor-id");
+			            var facebook_id = response.id; 
+			            choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).data("donation-value"), facebook_id);
+				  });
 
-				var choicesArray = new Array();
-				$(".sweep-table-competitor-name").each(function(i) {
-					var id = $(this).data("competitor-id");
-					var facebook_id = "1234";
-					//	choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).text());
-					choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).data("donation-value"), facebook_id);
-				});
+				  $.ajax({
+				    	  type: 'POST',
+					  url: "events/<%= @event.id %>/donations",
+					  data:  { json: JSON.stringify(choicesArray) },
+					  datatype: 'JSON',
+					  success: function(data) {
+					  	  hide_spinner();
+						  donations = data;
+						  $("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
+						  $("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
 
-				$.ajax({
-					type: 'POST',
-					url: "events/<%= @event.id %>/donations",
-					data:  { json: JSON.stringify(choicesArray) },
-					datatype: 'JSON',
-					success: function(data) {
-						hide_spinner();
-						donations = data;
-						$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
-						$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
-
-						donate_action_current_step = move_to;
-						$("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
-						$("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
-					},
-					error: function() {
-						hide_spinner();
-						$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
-						$("#donate-action-next-btn").hide();
-						$("#donate-action-ajax-error").addClass("donate-action-current-step");
-					}
-				});
+						  donate_action_current_step = move_to;
+						  $("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
+						  $("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
+					  },
+					  error: function() {
+				  		  hide_spinner();
+						  $("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
+						  $("#donate-action-next-btn").hide();
+						  $("#donate-action-ajax-error").addClass("donate-action-current-step");
+					  }
+				  });
+                                });
 
 
 				break;
@@ -131,17 +131,9 @@
                                           FB.api('/me/feed','post',params,function(response) {
                                             if (!response || response.error) {
 					      alert('Error occured');
-					    } 
-                                            else {
-					      alert('Published to stream - you might want to delete it now!');
-                                            } } );
+					    }
+                                          }); 
                                            
-						//$.ajax({
-					//		type: 'GET',
-				//			url: "events/<%= @event.id %>/donations/"+donations[i]+"/publish",
-			//				success: function() {},
-		//					error: function() {}
-	//					});
 					}
 					$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
 					$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");

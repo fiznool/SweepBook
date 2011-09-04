@@ -9,7 +9,8 @@ class DonationsController < ApplicationController
       @json.each do |c|
         d = Donation.new( :event_id => params[:event_id],
                           :competitor_id => c['competitor_id'],
-                          :choice => c['choice'] );
+                          :choice => c['choice'],
+                          :facebook_id => c['facebook_id'] );
         if d.errors.any?
           render :json => d.errors, :status => 400
           return
