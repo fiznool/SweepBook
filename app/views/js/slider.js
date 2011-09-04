@@ -102,7 +102,7 @@ $(document).ready(function() {
 				donators[r.id] = r;
 				
 				// Put in hall of fame
-				$("#hall-of-fame").append('<span><img src="'+r.picture+'" alt="'+r.name+'"/></span>')
+				$("#hall-of-fame").append('<span><img src="'+r.picture+'" alt="'+r.name+'" title="'+r.name+'"/></span>')
 			});
 		});
 
