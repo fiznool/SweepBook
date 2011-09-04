@@ -2,6 +2,8 @@ class DonationsController < ApplicationController
   def create 
 
     donations= Array.new
+    donation_ids = Array.new
+
     if( params.has_key?('json') )
       @json = ActiveSupport::JSON.decode(params[:json])
       @json.each do |c|
@@ -25,11 +27,14 @@ class DonationsController < ApplicationController
     end
 
     donations.each do |don|
-      unless don.save
+      if don.save
+        donation_ids.push(don.id)
+      else
         render :json => don.errors, :status => 400
+        return
       end
     end 
-    render :json => {}, :status => :ok
+    render :json => donation_ids , :status => :ok
   end
 
   def confirm
