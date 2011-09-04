@@ -50,6 +50,17 @@
 
 				donate_action_current_step = move_to;
 
+				$("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
+				$("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
+
+				break;
+				
+				case 2:
+				$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
+				$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
+
+				donate_action_current_step = move_to;
+
 				// Fill in choices
 				$("#donation-modal-choices-list").empty();
 				$(".sweep-slider").each(function(i) {
@@ -65,7 +76,7 @@
 
 				break;
 
-				case 2:
+				case 3:
 
 				$("#donate-action-next-btn").text("Next");
 				$("#donate-action-next-btn").hide();
@@ -106,7 +117,7 @@
 
 
 				break;
-				case 3:
+				case 4:
 
 					for ( var i = 0; i < donations.length; i++) 
 					{
@@ -201,7 +212,8 @@
 					}
 				} else {
 					$("#warning-alert:visible").hide();
-					// Show modal
+					
+					// Show modal, check if logged in
 					$("#donate-action-next-btn").show();
 					$("#donation-external-btn").show();
 					move_donate_step(1);
