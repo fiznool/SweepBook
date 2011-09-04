@@ -123,12 +123,25 @@
 
 					for ( var i = 0; i < donations.length; i++) 
 					{
-						$.ajax({
-							type: 'GET',
-							url: "events/<%= @event.id %>/donations/"+donations[i]+"/publish",
-							success: function() {},
-							error: function() {}
-						});
+                                          var params = {};
+                                          params['name'] = 'Sweepbook Donation';
+                                          params['description'] = 'A Sweepbook Donation';
+                                          params['link'] = 'http://apps.facebook.com/155060017912139/';
+                                            
+                                          FB.api('/me/feed','post',params,function(response) {
+                                            if (!response || response.error) {
+					      alert('Error occured');
+					    } 
+                                            else {
+					      alert('Published to stream - you might want to delete it now!');
+                                            } } );
+                                           
+						//$.ajax({
+					//		type: 'GET',
+				//			url: "events/<%= @event.id %>/donations/"+donations[i]+"/publish",
+			//				success: function() {},
+		//					error: function() {}
+	//					});
 					}
 					$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
 					$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
