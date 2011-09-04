@@ -225,6 +225,10 @@ td { vertical-align: top; }
 
 #warning-alert {
 	display: none;
+}
+
+.warning-alert-msg {
+	display: none;
 }	
 	 
 #app_title {
@@ -273,9 +277,13 @@ td { vertical-align: top; }
 }
 
 .slider-competitor-label span {
-	width: 70px;
+	width: 100%;
 	background-color: inherit;
-	padding-left: 30px;
+	text-align: center;
+}
+
+.competitor-name-active {
+	color: #333;
 }
 
 .mini {
