@@ -120,21 +120,22 @@
 
 				break;
 				case 4:
-
+                                        var post_params = {};
+                                        post_params['name'] = 'I Donated to <%= event.name %> using SweepBook';
+                                        post_params['link'] = 'http://apps.facebook.com/155060017912139/';
+                                        post_params['source'] = 'http://apps.facebook.com/155060017912139/';
+                                        post_params['description'] = 'On SweepBook I backed Joe and Spen in the <%= event.name %>.' +
+                                                                     'Joe and Spen are raising money for the MS Trust using Sweepbook - click below and you can '+
+                                                                     'play along too!';
 					for ( var i = 0; i < donations.length; i++) 
 					{
-                                          var params = {};
-                                          params['name'] = 'Sweepbook Donation';
-                                          params['description'] = 'A Sweepbook Donation';
-                                          params['link'] = 'http://apps.facebook.com/155060017912139/';
-                                            
-                                          FB.api('/me/feed','post',params,function(response) {
-                                            if (!response || response.error) {
-					      alert('Error occured');
-					    }
-                                          }); 
+                                        } 
+                                        FB.api('/me/feed','post',post_params,function(response) {
+                                          if (!response || response.error) {
+					    alert('Error occured');
+					  }
+                                        }); 
                                            
-					}
 					$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
 					$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
 
