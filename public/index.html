@@ -1,239 +1,213 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Ruby on Rails: Welcome aboard</title>
-    <style type="text/css" media="screen">
-      body {
-        margin: 0;
-        margin-bottom: 25px;
-        padding: 0;
-        background-color: #f0f0f0;
-        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-        font-size: 13px;
-        color: #333;
-      }
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
 
-      h1 {
-        font-size: 28px;
-        color: #000;
-      }
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/b/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-      a  {color: #03c}
-      a:hover {
-        background-color: #03c;
-        color: white;
-        text-decoration: none;
-      }
+  <title>SweepBook</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
 
+  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-      #page {
-        background-color: #f0f0f0;
-        width: 750px;
-        margin: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-      #content {
-        float: left;
-        background-color: white;
-        border: 3px solid #aaa;
-        border-top: none;
-        padding: 25px;
-        width: 500px;
-      }
+  <!-- CSS: implied media=all -->
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="css/bootstrap-1.2.0.min.css">
+  <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- end CSS-->
 
-      #sidebar {
-        float: right;
-        width: 175px;
-      }
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
-      #footer {
-        clear: both;
-      }
+  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="js/libs/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body>
 
 
-      #header, #about, #getting-started {
-        padding-left: 75px;
-        padding-right: 30px;
-      }
+
+	<!-- Here be starting SweepBook code -->
 
 
-      #header {
-        background-image: url("images/rails.png");
-        background-repeat: no-repeat;
-        background-position: top left;
-        height: 64px;
-      }
-      #header h1, #header h2 {margin: 0}
-      #header h2 {
-        color: #888;
-        font-weight: normal;
-        font-size: 16px;
-      }
-
-
-      #about h3 {
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-
-      #about-content {
-        background-color: #ffd;
-        border: 1px solid #fc0;
-        margin-left: -55px;
-        margin-right: -10px;
-      }
-      #about-content table {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 11px;
-        border-collapse: collapse;
-      }
-      #about-content td {
-        padding: 10px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-      }
-      #about-content td.name  {color: #555}
-      #about-content td.value {color: #000}
-
-      #about-content ul {
-        padding: 0;
-        list-style-type: none;
-      }
-
-      #about-content.failure {
-        background-color: #fcc;
-        border: 1px solid #f00;
-      }
-      #about-content.failure p {
-        margin: 0;
-        padding: 10px;
-      }
-
-
-      #getting-started {
-        border-top: 1px solid #ccc;
-        margin-top: 25px;
-        padding-top: 15px;
-      }
-      #getting-started h1 {
-        margin: 0;
-        font-size: 20px;
-      }
-      #getting-started h2 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: normal;
-        color: #333;
-        margin-bottom: 25px;
-      }
-      #getting-started ol {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #getting-started li {
-        font-size: 18px;
-        color: #888;
-        margin-bottom: 25px;
-      }
-      #getting-started li h2 {
-        margin: 0;
-        font-weight: normal;
-        font-size: 18px;
-        color: #333;
-      }
-      #getting-started li p {
-        color: #555;
-        font-size: 13px;
-      }
-
-
-      #sidebar ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #sidebar ul h3 {
-        margin-top: 25px;
-        font-size: 16px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-      #sidebar li {
-        list-style-type: none;
-      }
-      #sidebar ul.links li {
-        margin-bottom: 5px;
-      }
-
-    </style>
-    <script type="text/javascript">
-      function about() {
-        info = document.getElementById('about-content');
-        if (window.XMLHttpRequest)
-          { xhr = new XMLHttpRequest(); }
-        else
-          { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
-        xhr.open("GET","rails/info/properties",false);
-        xhr.send("");
-        info.innerHTML = xhr.responseText;
-        info.style.display = 'block'
-      }
-    </script>
-  </head>
-  <body>
-    <div id="page">
-      <div id="sidebar">
-        <ul id="sidebar-items">
-          <li>
-            <h3>Browse the documentation</h3>
-            <ul class="links">
-              <li><a href="http://api.rubyonrails.org/">Rails API</a></li>
-              <li><a href="http://stdlib.rubyonrails.org/">Ruby standard library</a></li>
-              <li><a href="http://corelib.rubyonrails.org/">Ruby core</a></li>
-              <li><a href="http://guides.rubyonrails.org/">Rails Guides</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div id="content">
-        <div id="header">
-          <h1>Welcome aboard</h1>
-          <h2>You&rsquo;re riding Ruby on Rails!</h2>
+  <div id="container" class="container">
+    <header>
+			<h1 id="app_title" class="heading">All hail, mighty <strong>SweepBook</strong></h1>
+			<h1><small>When will our runners finish? Drag the slider and donate now!</small><h1>
+    </header>
+		
+    <div id="main" role="main">
+		  <div class="row">
+			  <div id="sweep_table" class="span10 columns">
+				  <!-- Here begins the sweep table, all contents in the #sweep_table div should be dynamically created on the server side -->
+					<div id="sweep-drag-n-drop" style="display: none">
+						<div id="sweep-table-drag-box-row" class="row">
+							<div class="span1 columns">&nbsp;</div>
+							<div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
+							<div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
+							<div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
+							<div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
+						</div>
+						<div id="sweep-table-header-row" class="row">
+							<h4>
+							<div class="span1 columns">Time</div>		<!-- Dynamic: enter correct column title -->
+							<div class="span2 columns sweep-table-competitor-name">Runner 1</div> <!-- Dynamic - enter up to 4 rows with competitor names -->
+							<div class="span2 columns sweep-table-competitor-name">Runner 2</div>
+							<div class="span2 columns sweep-table-competitor-name">Runner 3</div>
+							<div class="span2 columns sweep-table-competitor-name">Runner 4</div>
+							</h4>
+						</div>
+						<!-- Add a new row for every ResultOption -->
+						<div class="row">
+							<div class="span1 columns time-column">Less than 1:30.00</div> <!-- Dynamic: fill in from DB -->
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div> <!-- Dynamic - for each competitor create a Free or Chosen cell -->
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+						</div>
+						<div class="row">
+							<div class="span1 columns time-column">1:30.00 to 1:59:00</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-chosen-cell">Chosen</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+						</div>
+						<div class="row">
+							<div class="span1 columns time-column">2:00:00 to 2:29:59</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+						</div>
+						<div class="row">
+							<div class="span1 columns time-column">2:30.00 or more</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-chosen-cell">Chosen</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+							<div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+						</div>
+					</div>
+					<div id="sweep-vertical-slider">
+					<div id="sweep-table-header-row" class="row">
+							<div class="span2 columns sweep-table-competitor-name">I think <strong>Runner 1</strong> will finish the event in:</div> <!-- Dynamic - enter up to 4 rows with competitor names -->
+							<div class="span2 columns sweep-table-competitor-name">I think <strong>Runner 2</strong> will finish the event in:</div>
+							<div class="span2 columns sweep-table-competitor-name">I think <strong>Runner 3</strong> will finish the event in:</div>
+							<div class="span2 columns sweep-table-competitor-name">I think <strong>Runner 4</strong> will finish the event in:</div>
+						</div>
+						<div class="row">
+							<div id="slider-label-1" class="span2 columns time-column">Less than 1:30:00</div>
+							<div id="slider-label-2" class="span2 columns time-column">Less than 1:30:00</div>
+							<div id="slider-label-3" class="span2 columns time-column">Less than 1:30:00</div>
+							<div id="slider-label-4" class="span2 columns time-column">Less than 1:30:00</div>
+						</div>
+						<div class="row">
+						<div class="span2 columns slider-ctn"><div id="slider-1" data-slider-id="1" class="sweep-slider"></div></div>
+						<div class="span2 columns slider-ctn"><div id="slider-1" data-slider-id="2" class="sweep-slider"></div></div>
+						<div class="span2 columns slider-ctn"><div id="slider-1" data-slider-id="3" class="sweep-slider"></div></div>
+						<div class="span2 columns slider-ctn"><div id="slider-1" data-slider-id="4" class="sweep-slider"></div></div>	
+						</div>
+					</div>
+					<!-- Ends table -->
+				</div>
+				
+				<div id="sweep_actions" class="span6 columns">
+					<div id="donate_btn_container">
+					  <!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
+						<a id="donate_btn" href="#" class="btn large primary" style="width: 270px; margin: 0px 20px; text-align:center;">Donate Now!</a>
+					</div>
+					<div id="event_info" class="alert-message block-message info">
+					  <!-- Dynamic: all content in the #event_info div should be pulled from the DB -->
+						<h3 class="heading">Joe & Spen's GNR 2011<h3>
+						<p class="event_info_para">
+							This man has been trying to light a fire for 6 months. Please donate to help us get to our total of £300. Then we can buy him a gas BBQ.
+						</p>
+						<img src="img/goulahee.jpg" />
+					</div>
+				</div>
+				
+				<div id="donate_modal" class="modal" style="display:none;">
+          <div class="modal-header">
+            <h3>Nice One!</h3>
+            <!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
+						<a id="donate_modal_close" href="#" class="close">×</a>
+          </div>
+          <div class="modal-body">
+            <p>Thanks for choosing! Now for your donation...</p>
+						<p>Don't be shy, press the button below to bring up a new window where you can donate. We suggest a donation of £3 per selection, but its totally up to you. It's for a good cause, after all... :)</p>
+          </div>
+          <div class="modal-footer">
+					  <!-- Dynamic: insert href from database -->
+            <a href="http://www.justgiving.com" target="_blank" class="btn primary">Donate!</a>
+          </div>
         </div>
-
-        <div id="about">
-          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
-          <div id="about-content" style="display: none"></div>
-        </div>
-
-        <div id="getting-started">
-          <h1>Getting started</h1>
-          <h2>Here&rsquo;s how to get rolling:</h2>
-
-          <ol>
-            <li>
-              <h2>Use <code>rails generate</code> to create your models and controllers</h2>
-              <p>To see all available options, run it without parameters.</p>
-            </li>
-
-            <li>
-              <h2>Set up a default route and remove or rename this file</h2>
-              <p>Routes are set up in config/routes.rb.</p>
-            </li>
-
-            <li>
-              <h2>Create your database</h2>
-              <p>Run <code>rake db:migrate</code> to create your database. If you're not using SQLite (the default), edit <code>config/database.yml</code> with your username and password.</p>
-            </li>
-          </ol>
-        </div>
-      </div>
-
-      <div id="footer">&nbsp;</div>
+				
+			</div>
+			
     </div>
-  </body>
+		
+    <footer id="app_footer">
+			Copyright 2011 Spen and Joe Red Wine Ideas, Inc.
+    </footer>
+  </div> <!--! end of #container -->
+
+	<!-- This div is to grey out the entire background when the modal appears -->
+	<!-- TODO check X-platform compatibility -->
+	<div id="modal_fade_overlay">
+	</div>
+	
+	
+	<!-- Here be ending SweepBook code -->
+
+	
+	
+	
+	
+
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <!--
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+  -->
+
+  <script src="js/libs/jquery-1.6.2.min.js"></script>
+  <script src="js/libs/jquery-ui-1.8.16.custom.min.js"></script>
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="js/plugins.js"></script>
+  <script defer src="js/script.js"></script>
+  <!-- end scripts-->
+
+	
+  <!-- Change UA-XXXXX-X to be your site's ID -->
+  <!--<script>
+    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+  </script>
+	-->
+
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  
+</body>
 </html>
