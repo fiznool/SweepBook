@@ -247,6 +247,7 @@ td { vertical-align: top; }
 	position: fixed;
 	top: 0px;
 	opacity: 0.3;
+	z-index: 3;
 }
 
 .full-width {
@@ -303,11 +304,17 @@ td { vertical-align: top; }
 }*/
 
 .sweep-slider {
-  height: 400px;
-	margin: 0 auto;
+  height: 500px;
+	margin: 40px auto 0px auto;
 }
 
-
+.ui-slider .ui-slider-handle{
+    width: 50px; 
+    height: 50px; 
+    background: url(../img/slider_grabber.gif) no-repeat; 
+		margin-left: -15px;
+		border-style: none; 
+}
 
 
 
