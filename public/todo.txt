@@ -6,12 +6,13 @@ ToDo
 	 - Include anonymous / wall post
 	 - Change to Thanks page once donated, take you to your wall once you have donated / other viral tactics
  - Modal overlay: X-platform (look at http://www.zurb.com/playground/reveal-modal-plugin)
- - Resize for Facebook canvas
  - Checkbox to enable/disable competitors
  - Facebook API
  - Visuals for free/taken slots
+		- marker next to slider?
  - A hrefs for modal and close (look at jQuery UI demo, they do this
  - Data transfer to server for adding choices (form, AJAX?)
  - Data model for sliders (times, free/taken, taken by whom, etc)
  - Text / visuals spruce up
+ - heroku setup
  - Google Analytics?

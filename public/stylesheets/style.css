@@ -211,6 +211,10 @@ td { vertical-align: top; }
    Author: 
    ========================================================================== */
 
+.container {
+  width: 760px;
+}
+
 .event_info_para {
   padding: 7px 14px;
 }
