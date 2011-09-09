@@ -1,18 +1,20 @@
 ToDo
-
- - Help section
- - Donate modal:
-   - Show times chosen
-	 - Include anonymous / wall post
-	 - Change to Thanks page once donated, take you to your wall once you have donated / other viral tactics
- - Modal overlay: X-platform (look at http://www.zurb.com/playground/reveal-modal-plugin)
- - Checkbox to enable/disable competitors
- - Facebook API
  - Visuals for free/taken slots
+		- Above slider - show if free or taken
 		- marker next to slider?
- - A hrefs for modal and close (look at jQuery UI demo, they do this
+ - Donate modal:
+   - Format - three step approach?
+	 - Show times chosen (transfer data from app to modal)
+	 - Include anonymous / wall post checkboxes - three step approach?
+ - Checkbox to enable/disable competitors
+ - Facebook authentication:
+   - Use modal
+	 - If check anonymous - no auth needed
+	 - Else, use FB.login
  - Data transfer to server for adding choices (form, AJAX?)
  - Data model for sliders (times, free/taken, taken by whom, etc)
  - Text / visuals spruce up
- - heroku setup
+ - Modal overlay: X-platform (look at http://www.zurb.com/playground/reveal-modal-plugin)
+ - A hrefs for modal and close (look at jQuery UI demo, they do this
+ - Help section
  - Google Analytics?
