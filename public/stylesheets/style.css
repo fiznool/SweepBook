@@ -320,9 +320,45 @@ td { vertical-align: top; }
 		border-style: none; 
 }
 
+#donate-steps {
+	width: 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
 
+#donate-steps li {
+	font-size: 24px;
+	float: left;
+	padding: 10px 20px 10px 0px;
+	color: #B0B1B3;
+}
 
+#donate-steps h4 {
+	line-height: 1em;
+	color: inherit;
+}
 
+#donate-steps li p {
+	font-size: 13px;
+	padding-top: 5px;
+}
+
+#donate-steps li.donate-step-current {
+	color: black;
+}
+
+#donate-action-zone div {
+	display: none;
+}
+
+#donate-action-zone div.donate-action-current-step {
+	display: block;
+}
+
+#donate-action-finish-btn {
+	display: none;
+}
 
 
 

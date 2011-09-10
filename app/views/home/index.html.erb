@@ -1,106 +1,98 @@
-  <div id="container" class="container">
-    <header>
-      <h1 id="app_title" class="heading">All hail, mighty <strong>SweepBook</strong></h1>
-      <h1 class="heading"><small>When will our runners finish? Drag the slider and donate now!</small>
-    </header>
-		
-    <div id="main" role="main">
-      <div class="row">
-        <div id="sweep_table" class="span7 columns">
-          <!-- Here begins the sweep table, all contents in the #sweep_table div should be dynamically created on the server side -->
-	  <div id="sweep-drag-n-drop" style="display: none">
-	    <div id="sweep-table-drag-box-row" class="row">
-	      <div class="span1 columns">&nbsp;</div>
-              <% @competitors.each do |c|%>
-	        <div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
-              <% end %>
-	    </div>
+<div id="container" class="container">
+	<header>
+		<h1 id="app_title" class="heading">All hail, mighty <strong>SweepBook</strong></h1>
+		<h1 class="heading"><small>When will our runners finish? Drag the slider and donate now!</small></h1>
+	</header>
 
-            <div id="sweep-table-header-row" class="row">
-	      <h4>
-	        <div class="span1 columns">Time</div>		<!-- Dynamic: enter correct column title -->
-                <% @competitors.each do |c| %>
-		  <div class="span2 columns sweep-table-competitor-name"><%= c.facebook_id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
-                <% end %>
-              </h4>
-	    </div>
+	<div id="main" role="main">
+		<div class="row">
+			<div id="sweep_table" class="span7 columns">
+				<!-- Here begins the sweep table, all contents in the #sweep_table div should be dynamically created on the server side -->
 
-	    <% @i = @event.time_min %>
-            <% while @i < @event.time_max do %>
-              <div class="row">
-                <div class="span1 columns time-column"><%= Time.at(@i*60).gmtime.strftime('%R') %></div>
-                <% @competitors.each do |c| %>
-                  <div class="span2 columns sweep-cell sweep-free-cell">Free</div>
-                <% end %>
-              </div>             
-              <% @i = @i + @event.time_interval %>
-            <% end %>
-	  </div>
-          
-          <div id="sweep-vertical-slider">
-	    <div id="sweep-table-header-row" class="row">
-	      <h4>
-                <% @competitors.each do |c| %>
-  	          <div class="span3 columns sweep-table-competitor-name"><%= c.facebook_id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
-                <% end %>
-	      </h4>
-	    </div>
-	
-          <div class="row">
-            <% @i = 1 %>
-            <% while @i < @competitors.size + 1 do %>
-	      <div id="slider-label-<%= @i %>" class="span3 columns time-column"><%= Time.at(@event.time_min*60).gmtime.strftime('%R') %></div>
-              <% @i = @i + 1 %>
-            <% end %>
-	  </div>
+				<div id="sweep-vertical-slider">
+					<div id="sweep-table-header-row" class="row">
+						<h4>
+							<% @competitors.each do |c| %>
+							<div class="span3 columns sweep-table-competitor-name"><%= c.facebook_id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
+							<% end %>
+						</h4>
+					</div>
 
-	  <div class="row">
-            <% @i = 1 %>
-            <% while @i < @competitors.size + 1 do %>
-	      <div class="span3 columns slider-ctn"><div id="slider-<%= @i %>" data-slider-id="<%= @i %>" class="sweep-slider"></div></div>
-              <% @i = @i + 1 %>
-            <% end %>
-	  </div>
-	</div>
-      <!-- Ends table -->
-    </div>
-				
-    <div id="sweep_actions" class="span6 columns">
-      <div id="donate_btn_container">
-      <!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
-        <a id="donate_btn" href="#" class="btn large primary" style="width: 270px; margin: 0px 20px; text-align:center;">Donate Now!</a>
-      </div>
-      <div id="event_info" class="alert-message block-message info">
-        <!-- Dynamic: all content in the #event_info div should be pulled from the DB -->
-        <h3 class="heading"><%= @event.name %>
-	<p class="event_info_para"><%= @event.info %></p>	
-	<%= image_tag "goulahee.jpg" %>
-      </div>
-    </div>
-				
-    <div id="donate_modal" class="modal" style="display:none;">
-      <div class="modal-header">
-        <h3>Nice One!</h3>
-        <!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
-        <a id="donate_modal_close" href="#" class="close">×</a>
-      </div>
-      <div class="modal-body">
-        <p>Thanks for choosing! Now for your donation...</p>
-	<p>Don't be shy, press the button below to bring up a new window where you can donate. We suggest a donation of £3 per selection, but its totally up to you. It's for a good cause, after all... :)</p>
-      </div>
-      <div class="modal-footer">
-        <!-- Dynamic: insert href from database -->
-        <a href="http://www.justgiving.com" target="_blank" class="btn primary">Donate!</a>
-      </div>
-    </div>
-				
-  </div>
-			
-</div>
+					<div class="row">
+						<% @i = 1 %>
+						<% while @i < @competitors.size + 1 do %>
+						<div id="slider-label-<%= @i %>" class="span3 columns time-column"><%= Time.at(@event.time_min*60).gmtime.strftime('%R') %></div>
+						<% @i = @i + 1 %>
+						<% end %>
+					</div>
+
+					<div class="row">
+						<% @i = 1 %>
+						<% while @i < @competitors.size + 1 do %>
+						<div class="span3 columns slider-ctn"><div id="slider-<%= @i %>" data-slider-id="<%= @i %>" class="sweep-slider"></div></div>
+						<% @i = @i + 1 %>
+						<% end %>
+					</div>
+				</div> <!-- #sweep-vertical-slider -->
+			</div> <!-- #sweep-table -->
+
+			<div id="sweep_actions" class="span6 columns">
+				<div id="donate_btn_container">
+					<!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
+					<a id="donate_btn" href="#" class="btn large primary" style="width: 270px; margin: 0px 20px; text-align:center;" data-reveal-id="donate-modal-reveal" data-closeonbackgroundclick="false" data-dismissmodalclass="modal-dismiss">Donate Now!</a>
+				</div>
+				<div id="event_info" class="alert-message block-message info">
+					<!-- Dynamic: all content in the #event_info div should be pulled from the DB -->
+					<h3 class="heading"><%= @event.name %></h3>
+					<p class="event_info_para"><%= @event.info %></p>	
+					<%= image_tag "goulahee.jpg" %>
+				</div>
+			</div> <!-- #sweep_actions -->
+		</div> <!-- end of row -->
+	</div> <!-- end of #main -->
 </div> <!--! end of #container -->
 
-	<!-- This div is to grey out the entire background when the modal appears -->
-	<!-- TODO check X-platform compatibility -->
-<div id="modal_fade_overlay">
-</div>
-<%= javascript_include_tag '/js/slider.js' %>
+<!-- This div is to grey out the entire background when the modal appears -->
+<!-- TODO check X-platform compatibility -->
+<div id="donate-modal-reveal" class="reveal-modal">
+	<h2>Almost there!</h2>
+	<p>There's just three little things left to do.</p>
+	<ul id="donate-steps" class="unstyled">
+		<li id="donate-label-step1" class="donate-step-current">
+			<h4>Step 1</h4>
+			<p>Reserve your choice</p>
+		</li>
+		<li id="donate-label-step2">
+			<h4>Step 2</h4>
+			<p>Place your donation</p>
+		</li>
+		<li id="donate-label-step3">
+			<h4>Step 3</h4>
+			<p>Post to your wall</p>
+		</li>
+	</ul>
+	<div id="donate-action-zone">
+		<div id="donate-action-step1" class="donate-action-current-step">
+			<h5>You chose the following times:</h5>
+			<ul>
+				<li><em>1.30</em> for Tom</li>
+				<li><em>3.30</em> for Joe</li>
+			</ul>
+			<p>If you are OK with these times, click the Next button below to reserve these choices. This will stop anybody else stealing your slot.</p>
+			<p>If you need to change your choices, no problemo. Just click the X in the top right hand corner to return to the stick man sliders.</p>
+			<a class="close-reveal-modal modal-dismiss">&#215;</a>
+		</div>
+		<div id="donate-action-step2">
+			<h5>Hands in pockets time...</h5>
+			<p>Great, your choices have been saved. Now, its time to donate your money. Please don't be stingy, its for a good cause. Suggested donation is £3 per choice, but of any extra would be gratefully received!</p>
+			<p>We didn't have time to build a checkout, so instead we are using Virgin Money Giving to take your donation. Please <a href="http://uk.virginmoneygiving.com/giving/" target="blank">click here to go to our Virgin Money Giving site.</a> It will open a new window - once you've finished donating, come back here for the last step.
+		</div>
+		<div id="donate-action-step3">
+			<h5>You are awesome.</h5>
+			<p>Thank you a thousand times for taking the time to donate to our good cause (you did donate, didn't you?). We'd really love to spread the word and so. if you'll allow us to, we'd like to post your generosity on your wall, for the world (or at least your friends) to see.</p>
+			<p>If this is OK, click below.</p>
+		</div>
+	</div>
+	<a id="donate-action-next-btn" href="#" class="btn primary">Next</a>
+	<a id="donate-action-finish-btn" href="#" class="btn success modal-dismiss">Finish</a>
+</div> <!-- end of #donate-modal-reveal -->

@@ -1,0 +1,28 @@
+<div id="sweep-drag-n-drop" style="display: none">
+    <div id="sweep-table-drag-box-row" class="row">
+      <div class="span1 columns">&nbsp;</div>
+          <% @competitors.each do |c|%>
+        <div class="span2 columns sweep-drag-ctn"><div class="sweep-dragger">Drag Me!</div></div>
+          <% end %>
+    </div>
+
+        <div id="sweep-table-header-row" class="row">
+      <h4>
+        <div class="span1 columns">Time</div>		<!-- Dynamic: enter correct column title -->
+            <% @competitors.each do |c| %>
+	  <div class="span2 columns sweep-table-competitor-name"><%= c.facebook_id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
+            <% end %>
+          </h4>
+    </div>
+
+    <% @i = @event.time_min %>
+        <% while @i < @event.time_max do %>
+          <div class="row">
+            <div class="span1 columns time-column"><%= Time.at(@i*60).gmtime.strftime('%R') %></div>
+            <% @competitors.each do |c| %>
+              <div class="span2 columns sweep-cell sweep-free-cell">Free</div>
+            <% end %>
+          </div>             
+          <% @i = @i + @event.time_interval %>
+        <% end %>
+  </div>

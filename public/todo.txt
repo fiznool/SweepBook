@@ -1,18 +1,20 @@
 ToDo
- - Visuals for free/taken slots
-		- Above slider - show if free or taken
-		- marker next to slider?
  - Donate modal:
    - Format - three step approach?
 	 - Show times chosen (transfer data from app to modal)
 	 - Include anonymous / wall post checkboxes - three step approach?
+ - Donate JSON to store whether free or taken
+ - Data model for sliders (times, free/taken, taken by whom, etc)
+ - Visuals for free/taken slots
+		- Above slider - show if free or taken
+		- marker next to slider?
  - Checkbox to enable/disable competitors
  - Facebook authentication:
    - Use modal
 	 - If check anonymous - no auth needed
 	 - Else, use FB.login
  - Data transfer to server for adding choices (form, AJAX?)
- - Data model for sliders (times, free/taken, taken by whom, etc)
+ - Different times for each competitor
  - Text / visuals spruce up
  - Modal overlay: X-platform (look at http://www.zurb.com/playground/reveal-modal-plugin)
  - A hrefs for modal and close (look at jQuery UI demo, they do this
