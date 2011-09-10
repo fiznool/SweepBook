@@ -39,7 +39,7 @@
 			<div id="sweep_actions" class="span6 columns">
 				<div id="donate_btn_container">
 					<!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
-					<a id="donate_btn" href="#" class="btn large primary" style="width: 270px; margin: 0px 20px; text-align:center;" data-reveal-id="donate-modal-reveal" data-closeonbackgroundclick="false" data-dismissmodalclass="modal-dismiss">Donate Now!</a>
+					<a id="donate_btn" href="#" class="btn large success" style="width: 270px; margin: 0px 20px; text-align:center;">Enter Sweepstake</a>
 				</div>
 				<div id="event_info" class="alert-message block-message info">
 					<!-- Dynamic: all content in the #event_info div should be pulled from the DB -->
@@ -74,25 +74,26 @@
 	<div id="donate-action-zone">
 		<div id="donate-action-step1" class="donate-action-current-step">
 			<h5>You chose the following times:</h5>
-			<ul>
-				<li><em>1.30</em> for Tom</li>
-				<li><em>3.30</em> for Joe</li>
+			<ul id="donation-modal-choices-list">
+				<!-- Filled in by JS -->
 			</ul>
-			<p>If you are OK with these times, click the Next button below to reserve these choices. This will stop anybody else stealing your slot.</p>
-			<p>If you need to change your choices, no problemo. Just click the X in the top right hand corner to return to the stick man sliders.</p>
+			<p>If you are OK with these times, click the button below to proceed.</p>
+			<p>If you need to change your choices, just click the X in the top right hand corner of this pop-up box to return.</p>
 			<a class="close-reveal-modal modal-dismiss">&#215;</a>
 		</div>
 		<div id="donate-action-step2">
 			<h5>Hands in pockets time...</h5>
-			<p>Great, your choices have been saved. Now, its time to donate your money. Please don't be stingy, its for a good cause. Suggested donation is £3 per choice, but of any extra would be gratefully received!</p>
-			<p>We didn't have time to build a checkout, so instead we are using Virgin Money Giving to take your donation. Please <a href="http://uk.virginmoneygiving.com/giving/" target="blank">click here to go to our Virgin Money Giving site.</a> It will open a new window - once you've finished donating, come back here for the last step.
+			<p>Your choices have been saved... now, its time to donate!</p>
+			<p>We are running for the MS Trust, who are doing wonderful things for people with multiple sclerosis. We suggest that you donate £3 per choice you made, but any extra would be gratefully received.</p>
+			<p>We are using <em>Virgin Money Giving</em> to take your donation. Please <a id="donation-anchor" href="http://uk.virginmoneygiving.com/giving/" target="blank">click here to go to our Virgin Money Giving site.</a> It will open a new window - once you've finished donating, come back here for the last step.
 		</div>
 		<div id="donate-action-step3">
 			<h5>You are awesome.</h5>
-			<p>Thank you a thousand times for taking the time to donate to our good cause (you did donate, didn't you?). We'd really love to spread the word and so. if you'll allow us to, we'd like to post your generosity on your wall, for the world (or at least your friends) to see.</p>
-			<p>If this is OK, click below.</p>
+			<p>Thank you a thousand times for taking the time to donate to our good cause. Your money will help the MS Trust to continue their brilliant work.</p>
+			<p>We would like to post a short message to your wall, telling the world (or at least your friends) how generous you have been. This will also help us to get the word out about our run and hopefully raise more money for MS Trust.</p>
+			<h2>Need to work out what goes here...</h2>
 		</div>
 	</div>
-	<a id="donate-action-next-btn" href="#" class="btn primary">Next</a>
+	<a id="donate-action-next-btn" href="#" class="btn primary">Confirm</a>
 	<a id="donate-action-finish-btn" href="#" class="btn success modal-dismiss">Finish</a>
 </div> <!-- end of #donate-modal-reveal -->

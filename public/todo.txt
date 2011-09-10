@@ -1,7 +1,6 @@
 ToDo
  - Donate modal:
    - Format - three step approach?
-	 - Show times chosen (transfer data from app to modal)
 	 - Include anonymous / wall post checkboxes - three step approach?
  - Donate JSON to store whether free or taken
  - Data model for sliders (times, free/taken, taken by whom, etc)

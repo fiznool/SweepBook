@@ -4,7 +4,7 @@
 
 (function( $, undefined ) {
 
-	
+	// Donation Modal logic
 	var donate_action_current_step = 1;
 	
 	function move_donate_step(move_to) {
@@ -13,6 +13,27 @@
 		
 		donate_action_current_step = move_to;
 		
+		switch (donate_action_current_step) {
+			case 1:
+				// Fill in choices
+				$("#donation-modal-choices-list").empty();
+				$(".sweep-table-competitor-name").each(function(i) {
+					$("#donation-modal-choices-list").append("<li><em>" + $("#slider-label-"+(i+1)).text() + "</em> for " + $(this).text() + "</li>");
+				});
+				$("#donate-action-next-btn").text("Confirm Choices");
+			break;
+			case 2:
+				$("#donate-action-next-btn").text("Next");
+				$("#donate-action-next-btn").hide();
+			break;
+			case 3:
+				$("#donate-action-next-btn").hide();
+				$("#donate-action-finish-btn").show();
+			break;
+			default:
+			break;
+		}
+		
 		$("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
 		$("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
 	}
@@ -20,22 +41,35 @@
 	$("#donate-action-next-btn").click(function() {
 		// Move to the next page
 		move_donate_step(donate_action_current_step+1);
+	});
+		
+	$("#donation-anchor").click(function() {
+		$("#donate-action-next-btn").show();
+	});
 	
-		if (donate_action_current_step === 3) {
-			$("#donate-action-next-btn").hide();
-			$("#donate-action-finish-btn").show();
-		}
+	$("#donate_btn").click(function() {
+		$("#donate-action-next-btn").show();
+		move_donate_step(1);
+		
+		$('#donate-modal-reveal').reveal({
+			 animation: 'fadeAndPop',					//fade, fadeAndPop, none
+		     animationspeed: 300,						//how fast animtions are
+		     closeonbackgroundclick: false,				//if you click background will modal close?
+		     dismissmodalclass: 'modal-dismiss'    		//the class of a button or element that will close an open modal
+		});
+		
 	});
 	
 	$(".modal-dismiss").click(function() {
-		move_donate_step(1);
-		$("#donate-action-next-btn").show();
 		$("#donate-action-finish-btn").hide();
 	});
 	
 	
 	
+	
+	
 	$(document).ready(function() {
+		
 		$(".sweep-dragger").draggable({ axis: 'y', containment: '#sweep_table'});
 		$(".sweep-free-cell").droppable({
 			drop: function() { $(this).addClass( "sweep-active-cell" ); },
