@@ -12,6 +12,15 @@
 	DonationChoice.prototype = {
 		toString: function() { return this.competitor_id + " with time " + this.choice; }
 	}
+	
+	var DonationStatus = function(donationChoice, choiceTaken) {
+		this.donationChoice = donationChoice;
+		this.choiceTaken = choiceTaken;
+	}
+	
+	DonationStatus.prototype = {
+		toString: function() { return "choice: " + this.donationChoice + ", taken = " + this.choiceTaken; }
+	}
 
 	// Donation Modal logic
 	var donate_action_current_step = 1;
@@ -28,7 +37,8 @@
 				// Fill in choices
 				$("#donation-modal-choices-list").empty();
 				$(".sweep-table-competitor-name").each(function(i) {
-					$("#donation-modal-choices-list").append("<li><em>" + $("#slider-label-"+(i+1)).text() + "</em> for " + $(this).text() + "</li>");
+					var c_id = $(this).data("competitor-id");
+					$("#donation-modal-choices-list").append("<li><em>" + $("#slider-label-"+c_id).text() + "</em> for " + $(this).text() + "</li>");
 				});
 				$("#donate-action-next-btn").text("Confirm Choices");
 				
@@ -122,7 +132,9 @@
 	}
 	
 	var hide_spinner = function() {
-		donation_spinner.stop();
+		if (donation_spinner !== undefined) {
+			donation_spinner.stop();
+		}
 		$("#donate-loading-spinner").hide();
 	}
 	
@@ -168,14 +180,30 @@
 			hoverClass: 'sweep-hover-cell'
 		});
 
-		var slider_vals = [
-		<% @values.reverse.each do |v| %>
+		var competitors = {
+			<% @competitors.each do |c| %>
+			"<%= c.facebook_id %>": new Array(),
+			<% end %>
+		};
+		
+		var sliderChoices = [
+		<% @values.each do |v| %>
 		"<%= Time.at(60*v).gmtime.strftime('%R') %>",
 		<% end %>
 		];
-
+		
+		for(var i=sliderChoices.length-1; i>=0; i--) {
+			var sliderChoice = sliderChoices[i];
+			for (var id in competitors) {
+				// id is the competitor id, use to get free/taken from the db?
+				var choiceTaken = false;
+				var competitorChoices = competitors[id];
+				competitorChoices.push(new DonationStatus(sliderChoice, choiceTaken))
+			}
+		}
+		
 		var slider_min = 0;
-		var slider_max = slider_vals.length - 1;
+		var slider_max = sliderChoices.length - 1;
 		var slider_step = 1;
 
 		$(".sweep-slider").slider( {
@@ -186,10 +214,9 @@
 			step: slider_step,
 			slide: function(event, ui) {
 				var index = ui.value;
-				var slider_id = $(this).data("slider-id");
-
-				// Update the label from the slider_vals
-				var label_to_write = slider_vals[index];
+				var slider_id = $(this).data("competitor-id");
+				var competitorChoices = competitors[slider_id];
+				var label_to_write = competitorChoices[index].donationChoice;
 				$("#slider-label-"+slider_id).html(label_to_write);
 			}
 		} );

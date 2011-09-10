@@ -19,18 +19,14 @@
 					</div>
 
 					<div class="row">
-						<% @i = 1 %>
-						<% while @i < @competitors.size + 1 do %>
-						<div id="slider-label-<%= @i %>" class="span3 columns time-column"><%= Time.at(@event.time_min*60).gmtime.strftime('%R') %></div>
-						<% @i = @i + 1 %>
+						<% @competitors.each do |c| %>
+						<div id="slider-label-<%= c.facebook_id %>" data-competitor-id="<%= c.facebook_id %>" class="span3 columns time-column"><%= Time.at(@event.time_min*60).gmtime.strftime('%R') %></div>
 						<% end %>
 					</div>
 
 					<div class="row">
-						<% @i = 1 %>
-						<% while @i < @competitors.size + 1 do %>
-						<div class="span3 columns slider-ctn"><div id="slider-<%= @i %>" data-slider-id="<%= @i %>" class="sweep-slider"></div></div>
-						<% @i = @i + 1 %>
+						<% @competitors.each do |c| %>
+						<div class="span3 columns slider-ctn"><div id="slider-<%= c.facebook_id %>" data-competitor-id="<%= c.facebook_id %>" class="sweep-slider"></div></div>
 						<% end %>
 					</div>
 				</div> <!-- #sweep-vertical-slider -->

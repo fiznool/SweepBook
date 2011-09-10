@@ -9,6 +9,7 @@ class JsController < ApplicationController
   def slider
     @values = Array.new
     @event = Event.first
+    @competitors = @event.competitors
     @i = @event.time_min
     while @i < @event.time_max do
       @values.push(@i)
