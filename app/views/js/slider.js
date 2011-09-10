@@ -43,12 +43,14 @@
 		move_donate_step(donate_action_current_step+1);
 	});
 		
-	$("#donation-anchor").click(function() {
+	$(".donation-anchor").click(function() {
+		$("#donation-external-btn").hide();
 		$("#donate-action-next-btn").show();
 	});
 	
 	$("#donate_btn").click(function() {
 		$("#donate-action-next-btn").show();
+		$("#donation-external-btn").show();
 		move_donate_step(1);
 		
 		$('#donate-modal-reveal').reveal({
