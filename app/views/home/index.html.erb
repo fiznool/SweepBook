@@ -13,7 +13,7 @@
 					<div id="sweep-table-header-row" class="row">
 						<h4>
 							<% @competitors.each do |c| %>
-							<div class="span3 columns sweep-table-competitor-name"><%= c.facebook_id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
+							<div class="span3 columns sweep-table-competitor-name" data-competitor-id="<%= c.facebook_id %>"><%= c.facebook_id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
 							<% end %>
 						</h4>
 					</div>
@@ -96,6 +96,7 @@
 			<h2>Need to work out what goes here...</h2>
 		</div>
 	</div>
+	<div id="donate-loading-spinner"></div>
 	<a id="donate-action-next-btn" href="#" class="btn primary">Confirm</a>
 	<a id="donate-action-finish-btn" href="#" class="btn success modal-dismiss">Finish</a>
 </div> <!-- end of #donate-modal-reveal -->

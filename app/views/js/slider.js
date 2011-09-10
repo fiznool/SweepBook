@@ -3,39 +3,127 @@
 */
 
 (function( $, undefined ) {
+	
+	var DonationChoice = function(competitor_id, choice) {
+		this.competitor_id = competitor_id;
+		this.choice = choice;
+	}
+	
+	DonationChoice.prototype = {
+		toString: function() { return this.competitor_id + " with time " + this.choice; }
+	}
 
 	// Donation Modal logic
 	var donate_action_current_step = 1;
 	
-	function move_donate_step(move_to) {
-		$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
-		$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
+	var move_donate_step = function(move_to) {
 		
-		donate_action_current_step = move_to;
-		
-		switch (donate_action_current_step) {
+		switch (move_to) {
 			case 1:
+				$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
+				$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
+				
+				donate_action_current_step = move_to;
+				
 				// Fill in choices
 				$("#donation-modal-choices-list").empty();
 				$(".sweep-table-competitor-name").each(function(i) {
 					$("#donation-modal-choices-list").append("<li><em>" + $("#slider-label-"+(i+1)).text() + "</em> for " + $(this).text() + "</li>");
 				});
 				$("#donate-action-next-btn").text("Confirm Choices");
+				
+				$("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
+				$("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
+				
 			break;
+			
 			case 2:
+				
 				$("#donate-action-next-btn").text("Next");
 				$("#donate-action-next-btn").hide();
+				
+				show_spinner();
+								
+				// Submit choices to server
+				
+				var choicesArray = new Array();
+				$(".sweep-table-competitor-name").each(function(i) {
+					choicesArray[i] = new DonationChoice($(this).data("competitor-id"), $("#slider-label-"+(i+1)).text());
+				});
+				
+				$.ajax({
+					type: 'POST',
+					url: "choices/save",
+					data: JSON.stringify(choicesArray),
+					datatype: 'JSON',
+					success: function() {
+						hide_spinner();
+						
+						$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
+						$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
+						
+						donate_action_current_step = move_to;
+						$("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
+						$("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
+					},
+					error: function() {
+						hide_spinner();
+						
+						// TODO change this to real error handling
+						$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
+						$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
+						
+						donate_action_current_step = move_to;
+						$("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
+						$("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
+					}
+				});
+				
+				
 			break;
 			case 3:
+				$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
+				$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
+				
 				$("#donate-action-next-btn").hide();
 				$("#donate-action-finish-btn").show();
+				
+				donate_action_current_step = move_to;
+				
+				$("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
+				$("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
+				
 			break;
 			default:
 			break;
 		}
 		
-		$("#donate-label-step"+donate_action_current_step).addClass("donate-step-current");
-		$("#donate-action-step"+donate_action_current_step).addClass("donate-action-current-step");
+		
+	}
+	
+	var donation_spinner;
+	
+	var show_spinner = function() {
+		if (donation_spinner === undefined) {
+			var opts = {
+			  lines: 10, // The number of lines to draw
+			  length: 4, // The length of each line
+			  width: 2, // The line thickness
+			  radius: 4, // The radius of the inner circle
+			  color: '#000', // #rbg or #rrggbb
+			  speed: 1, // Rounds per second
+			  trail: 50, // Afterglow percentage
+			  shadow: false // Whether to render a shadow
+			};
+			donation_spinner = new Spinner(opts);
+		}
+		$("#donate-loading-spinner").show();
+		donation_spinner.spin(document.getElementById("donate-loading-spinner"));	// spin.js requires the raw DOM element, not the jQuery one
+	}
+	
+	var hide_spinner = function() {
+		donation_spinner.stop();
+		$("#donate-loading-spinner").hide();
 	}
 	
 	$("#donate-action-next-btn").click(function() {
@@ -63,6 +151,7 @@
 	});
 	
 	$(".modal-dismiss").click(function() {
+		hide_spinner();
 		$("#donate-action-finish-btn").hide();
 	});
 	

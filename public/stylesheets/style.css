@@ -360,6 +360,12 @@ td { vertical-align: top; }
 	display: none;
 }
 
+#donate-loading-spinner {
+	display:none;
+	height: 30px;
+	width: 40px;
+}
+
 
 
 
