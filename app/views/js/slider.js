@@ -23,7 +23,7 @@
 	DonationStatus.prototype = {
 		toString: function() { return "choice: " + this.donationText + ", taken = " + this.choiceTaken; }
 	}
-
+	
 	// Donation Modal logic
 	var donate_action_current_step = 1;
 
@@ -230,8 +230,12 @@
 		$('.add-on :checkbox').click(function() {
 			if ($(this).attr('checked')) {
 				$(this).parents('.add-on').addClass('active');
+				var cid = $(this).parents('.sweep-table-competitor-name').data("competitor-id");
+				$("#slider-"+cid).slider('enable');
 			} else {
 				$(this).parents('.add-on').removeClass('active');
+				var cid = $(this).parents('.sweep-table-competitor-name').data("competitor-id");
+				$("#slider-"+cid).slider('disable');
 			}
 		});
 

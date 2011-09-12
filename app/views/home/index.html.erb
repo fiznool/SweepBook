@@ -15,7 +15,7 @@
 							<% @competitors.each do |c| %>
 							<div class="span3 columns sweep-table-competitor-name" data-competitor-id="<%= c.id %>">
 								<div class="input-prepend slider-competitor-label">
-									<label class="add-on"><input type="checkbox"></label>
+									<label class="add-on active"><input type="checkbox" checked="checked"></label>
 									<span class="uneditable-input"><%= c.name %></span>
 								</div>
 							</div> <!-- Dynamic - enter up to 4 rows with competitor names -->
