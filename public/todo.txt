@@ -1,13 +1,14 @@
 ToDo
- - Fix data transfer to server for adding choices (form, AJAX?)
+  - Visuals for free/taken slots
+		- marker next to slider?
  - Handle spot already taken errors:
   - When Enter Sweepstake pressed
   - On Confirmation
  - Handle AJAX error
- - Visuals for free/taken slots
-		- Above slider - show if free or taken
-		- marker next to slider?
- - Checkbox to enable/disable competitors
+ - Fix data transfer to server for adding choices (form, AJAX?)
+ - User who donated details (FB login, name/email combo)
+
+ 
  
 - Facebook authentication:
    - Use modal

@@ -221,6 +221,10 @@ td { vertical-align: top; }
 	
 .heading {
   text-align: center;
+}
+
+#warning-alert {
+	display: none;
 }	
 	 
 #app_title {
