@@ -9,13 +9,18 @@
 			<div id="sweep_table" class="span7 columns">
 				<!-- Here begins the sweep table, all contents in the #sweep_table div should be dynamically created on the server side -->
 
-				<div id="sweep-vertical-slider">
+				
 					<div id="sweep-table-header-row" class="row">
-						<h4>
+						
 							<% @competitors.each do |c| %>
-							<div class="span3 columns sweep-table-competitor-name" data-competitor-id="<%= c.id %>"><%= c.id %></div> <!-- Dynamic - enter up to 4 rows with competitor names -->
+							<div class="span3 columns sweep-table-competitor-name" data-competitor-id="<%= c.id %>">
+								<div class="input-prepend slider-competitor-label">
+									<label class="add-on"><input type="checkbox"></label>
+									<span class="uneditable-input"><%= c.id %></span>
+								</div>
+							</div> <!-- Dynamic - enter up to 4 rows with competitor names -->
 							<% end %>
-						</h4>
+						
 					</div>
 
 					<div class="row">
@@ -29,7 +34,7 @@
 						<div class="span3 columns slider-ctn"><div id="slider-<%= c.id %>" data-competitor-id="<%= c.id %>" class="sweep-slider"></div></div>
 						<% end %>
 					</div>
-				</div> <!-- #sweep-vertical-slider -->
+				
 			</div> <!-- #sweep-table -->
 
 			<div id="sweep_actions" class="span6 columns">
@@ -83,16 +88,16 @@
 			<p>We are running for the MS Trust, who are doing wonderful things for people with multiple sclerosis. We suggest that you donate £3 per choice you made, but any extra would be gratefully received.</p>
 			<p>We are using <strong><a class="donation-anchor" href="http://www.justgiving.com" target="blank">Just Giving</a></strong> to take your donation. Click on the button below to visit the Virgin Money Giving site.
 				It will open a new window - once you've finished donating, come back here for the last step.</p>
-			<a id="donation-external-btn" class="btn primary donation-anchor" href="http://www.justgiving.com" target="blank">Donate on Just Giving site</a>
+				<a id="donation-external-btn" class="btn primary donation-anchor" href="http://www.justgiving.com" target="blank">Donate on Just Giving site</a>
+			</div>
+			<div id="donate-action-step3">
+				<h5>You are awesome.</h5>
+				<p>Thank you a thousand times for taking the time to donate to our good cause. Your money will help the MS Trust to continue their brilliant work.</p>
+				<p>We would like to post a short message to your wall, telling the world (or at least your friends) how generous you have been. This will also help us to get the word out about our run and hopefully raise more money for MS Trust.</p>
+				<h2>Need to work out what goes here...</h2>
+			</div>
 		</div>
-		<div id="donate-action-step3">
-			<h5>You are awesome.</h5>
-			<p>Thank you a thousand times for taking the time to donate to our good cause. Your money will help the MS Trust to continue their brilliant work.</p>
-			<p>We would like to post a short message to your wall, telling the world (or at least your friends) how generous you have been. This will also help us to get the word out about our run and hopefully raise more money for MS Trust.</p>
-			<h2>Need to work out what goes here...</h2>
-		</div>
-	</div>
-	<div id="donate-loading-spinner"></div>
-	<a id="donate-action-next-btn" href="#" class="btn primary">Confirm</a>
-	<a id="donate-action-finish-btn" href="#" class="btn success modal-dismiss">Finish</a>
-</div> <!-- end of #donate-modal-reveal -->
+		<div id="donate-loading-spinner"></div>
+		<a id="donate-action-next-btn" href="#" class="btn primary">Confirm</a>
+		<a id="donate-action-finish-btn" href="#" class="btn success modal-dismiss">Finish</a>
+	</div> <!-- end of #donate-modal-reveal -->

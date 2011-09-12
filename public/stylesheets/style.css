@@ -239,10 +239,6 @@ td { vertical-align: top; }
   margin-top: 15px;
 }
 
-#sweep-table-header-row {
-  text-align: center;
-}
-
 #modal_fade_overlay {
   width:100%;
 	height:100%;
@@ -265,6 +261,21 @@ td { vertical-align: top; }
 
 .slider-label-taken {
 	color: red;
+}
+
+.slider-competitor-label {
+	margin: 0 auto;
+	width: 100px;
+}
+
+.slider-competitor-label span {
+	width: 70px;
+	background-color: inherit;
+	padding-left: 30px;
+}
+
+.mini {
+	border-left-width: 0;
 }
 
 .sweep-cell {

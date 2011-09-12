@@ -14,14 +14,14 @@
 		toString: function() { return this.competitor_id + " with time " + this.choice; }
 	}
 
-	var DonationStatus = function(donationChoice, value, choiceTaken) {
-		this.donationChoice = donationChoice;
+	var DonationStatus = function(donationText, donationValue, choiceTaken) {
+		this.donationText = donationText;
+		this.donationValue = donationValue;
 		this.choiceTaken = choiceTaken;
-		this.value = value;
 	}
 
 	DonationStatus.prototype = {
-		toString: function() { return "choice: " + this.donationChoice + ", taken = " + this.choiceTaken; }
+		toString: function() { return "choice: " + this.donationText + ", taken = " + this.choiceTaken; }
 	}
 
 	// Donation Modal logic
@@ -62,7 +62,7 @@
 			$(".sweep-table-competitor-name").each(function(i) {
 				var id = $(this).data("competitor-id");
 				//	choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).text());
-				choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).data("value"));
+				choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).data("donation-value"));
 			});
 
 			$.ajax({
@@ -184,19 +184,13 @@
 			hoverClass: 'sweep-hover-cell'
 		});
 
-		var competitors = {
-			<% @competitors.each do |c| %>
-			"<%= c.id %>": new Array(),
-			<% end %>
-		};
+		var competitors = new Array();
 
-		var competitorChoices;
 		<% @competitors.each do |c| %>
-		competitorChoices = competitors["<%= c.id %>"];
+		competitors["<%= c.id %>"] = new Array();
 		<% @data[c.id].sort.reverse.each do |value,taken| %>
-		competitorChoices.push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%R') %>", <%= value %>, <%= taken %>));
+		competitors["<%= c.id %>"].push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%R') %>", <%= value %>, <%= taken %>));
 		<% end %> 
-		$("#slider-label-"+<%= c.id %>).data('value', competitorChoices[competitorChoices.length-1].value); 
 		<% end %>	
 
 
@@ -206,15 +200,16 @@
 
 		var updateSliderLabel = function(index, sliderEl) {
 			var slider_id = sliderEl.data("competitor-id");
-			var donationChoice = competitorChoices[index].donationChoice;
-			var choiceTaken = competitorChoices[index].choiceTaken;
+			var donationStatus = competitors[slider_id][index];
+			var donationText = donationStatus.donationText;
+			var choiceTaken = donationStatus.choiceTaken;
 			var sliderLabelEl = $("#slider-label-"+slider_id);
-			sliderLabelEl.data('value',competitorChoices[index].value);
+			sliderLabelEl.data('donation-value',donationStatus.donationValue);
 			if (choiceTaken) {
-				sliderLabelEl.html("<span>" + donationChoice + "</span> is taken");
+				sliderLabelEl.html("<span>" + donationText + "</span> is taken");
 				sliderLabelEl.addClass("slider-label-taken");
 			} else {
-				sliderLabelEl.html("<span>" + donationChoice + "</span> is free");
+				sliderLabelEl.html("<span>" + donationText + "</span> is free");
 				sliderLabelEl.removeClass("slider-label-taken");
 			}
 		}
@@ -232,6 +227,13 @@
 			updateSliderLabel(slider_max, $(this));
 		});
 		
+		$('.add-on :checkbox').click(function() {
+			if ($(this).attr('checked')) {
+				$(this).parents('.add-on').addClass('active');
+			} else {
+				$(this).parents('.add-on').removeClass('active');
+			}
+		});
 
 
 
