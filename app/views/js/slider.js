@@ -34,7 +34,7 @@
 		<% @competitors.each do |c| %>
 		competitors["<%= c.id %>"] = new Array();
 		<% @data[c.id].sort.reverse.each do |value,taken| %>
-		competitors["<%= c.id %>"].push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%R') %>", <%= value %>, <%= taken %>));
+		competitors["<%= c.id %>"].push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%H:%M') %>", <%= value %>, <%= taken %>));
 		<% end %> 
 		<% end %>
 

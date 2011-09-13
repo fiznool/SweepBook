@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(:version => 20110904063411) do
   create_table "competitors", :force => true do |t|
     t.integer  "event_id"
     t.string   "facebook_id"
-    t.string   "donation_link"
     t.integer  "time_result"
     t.text     "result_story"
     t.integer  "result_option_id"
@@ -50,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20110904063411) do
     t.integer  "time_min"
     t.integer  "time_max"
     t.integer  "time_interval",           :default => 5
+    t.string   "donation_link"
   end
 
 end
