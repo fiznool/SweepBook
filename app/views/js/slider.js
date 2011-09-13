@@ -55,7 +55,7 @@
 				$(".sweep-slider").each(function(i) {
 					if (!$(this).hasClass("ui-state-disabled")) {
 						var c_id = $(this).data("competitor-id");
-						$("#donation-modal-choices-list").append("<li><em>" + $("#slider-label-"+c_id+" span").text() + "</em> for " + $(this).text() + "</li>");
+						$("#donation-modal-choices-list").append("<li><em>" + $("#slider-label-"+c_id+" span").text() + "</em> for " + $("#competitor-name-"+c_id).text() + "</li>");
 					}
 				});
 				$("#donate-action-next-btn").text("Confirm Choices");
