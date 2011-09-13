@@ -2,7 +2,8 @@ ToDo
   - Visuals for free/taken slots
 		- marker next to slider?
  - User who donated details (FB login, name/email combo)
-
+ - Step 1 - 4 for modal (include login page)
+ - Stage 4 and finish (reload page? redirect to fb.com?)
  
  
 - Facebook authentication:

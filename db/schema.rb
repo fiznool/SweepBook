@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110904044221) do
+ActiveRecord::Schema.define(:version => 20110904063411) do
 
   create_table "competitors", :force => true do |t|
     t.integer  "event_id"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(:version => 20110904044221) do
     t.datetime "updated_at"
     t.string   "choice"
     t.string   "status",        :default => "unconfirmed"
+    t.string   "facebook_id"
+    t.string   "donator_name"
+    t.string   "donator_email"
   end
 
   create_table "events", :force => true do |t|

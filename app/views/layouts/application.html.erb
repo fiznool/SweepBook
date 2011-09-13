@@ -39,12 +39,7 @@
 
   <body>
 
-    <%= fb_connect_async_js %>
-    <% if current_facebook_user %>
-      <%= fb_logout_link("Logout of fb",request.url) %>
-    <% else %>
-      <%= fb_login_and_redirect('/', :perms => "publish_stream" ) %>
-    <% end %> 
+    
 
     <%= yield %>
 
