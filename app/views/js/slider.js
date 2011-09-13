@@ -5,9 +5,10 @@
 
 (function( $, undefined ) {
 
-	var DonationChoice = function(competitor_id, choice) {
+	var DonationChoice = function(competitor_id, choice, facebook_id) {
 		this.competitor_id = competitor_id;
 		this.choice = choice;
+		this.facebook_id = facebook_id;
 	}
 
 	DonationChoice.prototype = {
@@ -88,8 +89,9 @@
 				var choicesArray = new Array();
 				$(".sweep-table-competitor-name").each(function(i) {
 					var id = $(this).data("competitor-id");
+					var facebook_id = "1234";
 					//	choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).text());
-					choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).data("donation-value"));
+					choicesArray[i] = new DonationChoice(id, $("#slider-label-"+id).data("donation-value"), facebook_id);
 				});
 
 				$.ajax({
