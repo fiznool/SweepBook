@@ -2,10 +2,9 @@ ToDo
   - Visuals for free/taken slots
 		- marker next to slider?
  - Handle spot already taken errors:
-  - When Enter Sweepstake pressed
-  - On Confirmation
- - Handle AJAX error
- - Fix data transfer to server for adding choices (form, AJAX?)
+  - On Confirmation (in AJAX)
+ - Handle AJAX error (i.e. not 200 return)
+ - Test data transfer to server for adding choices (form, AJAX?)
  - User who donated details (FB login, name/email combo)
 
  

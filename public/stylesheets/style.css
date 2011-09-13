@@ -225,6 +225,10 @@ td { vertical-align: top; }
 
 #warning-alert {
 	display: none;
+}
+
+.warning-alert-msg {
+	display: none;
 }	
 	 
 #app_title {

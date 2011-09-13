@@ -52,9 +52,11 @@
 
 				// Fill in choices
 				$("#donation-modal-choices-list").empty();
-				$(".sweep-table-competitor-name").each(function(i) {
-					var c_id = $(this).data("competitor-id");
-					$("#donation-modal-choices-list").append("<li><em>" + $("#slider-label-"+c_id+" span").text() + "</em> for " + $(this).text() + "</li>");
+				$(".sweep-slider").each(function(i) {
+					if (!$(this).hasClass("ui-state-disabled")) {
+						var c_id = $(this).data("competitor-id");
+						$("#donation-modal-choices-list").append("<li><em>" + $("#slider-label-"+c_id+" span").text() + "</em> for " + $(this).text() + "</li>");
+					}
 				});
 				$("#donate-action-next-btn").text("Confirm Choices");
 
@@ -177,22 +179,32 @@
 
 		$("#donate_btn").click(function() {
 			
-			var alreadyTaken = false;
+			var cidTaken = new Array();
+			var atLeastOneSliderIsActive = false;
 			
-			// Check that both selected choices haven't yet been taken
+			// Check that both selected choices haven't yet been taken, provided they are active
 			$(".sweep-slider").each(function(i) {
-				var cid = $(this).data("competitor-id");
-				var sliderIndex = $(this).slider("value");
-				var donationStatus = competitors[cid][sliderIndex];
-				if (donationStatus.choiceTaken) {
-					alreadyTaken = true;
+				if (!$(this).hasClass("ui-state-disabled")) {
+					atLeastOneSliderIsActive = true;
+					var cid = $(this).data("competitor-id");
+					var sliderIndex = $(this).slider("value");
+					var donationStatus = competitors[cid][sliderIndex];
+					if (donationStatus.choiceTaken) {
+						cidTaken.push(cid);
+					}	
 				}
 			});
 			
-			if (alreadyTaken) {
-				$("#warning-alert").show();
+			if (!atLeastOneSliderIsActive) {
+				showWarningAlert($("#warning-alert-msg-none-selected"));
+			} else if (cidTaken.length > 0) {
+				// Only show if not already shown
+				showWarningAlert($("#warning-alert-msg-already-taken"));
+				for ( var i=cidTaken.length-1; i>=0; --i ){
+				  $("#slider-label-"+cidTaken[i]).effect("bounce", { times:3 }, 300);
+				}
 			} else {
-				$("#warning-alert").hide();
+				$("#warning-alert:visible").hide();
 				// Show modal
 				$("#donate-action-next-btn").show();
 				$("#donation-external-btn").show();
@@ -207,6 +219,12 @@
 			}
 		
 		});
+		
+		var showWarningAlert = function(msgEl) {
+			$(".warning-alert-msg").hide();
+			msgEl.show();
+			$("#warning-alert:hidden").show("blind", { direction: "vertical" }, 500);
+		}
 
 		$(".modal-dismiss").click(function() {
 			hide_spinner();
@@ -214,7 +232,7 @@
 		});
 		
 		$("#warning-alert-close").click(function() {
-			$("#warning-alert").hide();
+			$("#warning-alert:visible").hide("blind", { direction: "vertical" }, 200);
 		});
 
 		$(".sweep-dragger").draggable({ axis: 'y', containment: '#sweep_table'});
@@ -265,10 +283,12 @@
 				$(this).parents('.add-on').addClass('active');
 				var cid = $(this).parents('.sweep-table-competitor-name').data("competitor-id");
 				$("#slider-"+cid).slider('enable');
+				$("#slider-label-"+cid).css("visibility", "visible");
 			} else {
 				$(this).parents('.add-on').removeClass('active');
 				var cid = $(this).parents('.sweep-table-competitor-name').data("competitor-id");
 				$("#slider-"+cid).slider('disable');
+				$("#slider-label-"+cid).css("visibility", "hidden");
 			}
 		});
 
