@@ -8,5 +8,5 @@
 
 timeNow = Time.now
 e = Event.create(:id => 1, :name => 'Great North Run 2011', :date => timeNow, :info => 'Joe and Spens amazing GNR 2011', :forcewallpostsoff => false, :forceanonymousdonations => false, :time_min => 120, :time_max => 180, :time_interval => 1, :donation_link => 'http://www.justgiving.com/geeksgorunning')
-Competitor.create( :event_id => e.id, :facebook_id => '123456', :name => 'Joe') 
-Competitor.create( :event_id => e.id, :facebook_id => 'fiznool', :name => 'Spen')
+Competitor.create( :event_id => 1, :facebook_id => '193109466', :name => 'Joe', :image_url => 'joe-mugshot.png') 
+Competitor.create( :event_id => 1, :facebook_id => '193107061', :name => 'Tom', :image_url => 'tom-mugshot.png')

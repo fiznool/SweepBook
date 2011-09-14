@@ -1,0 +1,11 @@
+ToDo
+ - JustGiving content
+ - Test…!
+ - JustGiving button move down
+ - Slider visuals improve
+
+ 
+ - Different times for each competitor
+ - A hrefs for modal and close (look at jQuery UI demo, they do this
+ - Help section
+ - Google Analytics?

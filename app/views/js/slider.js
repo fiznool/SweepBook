@@ -5,9 +5,10 @@
 
 (function( $, undefined ) {
 
-	var Competitor = function(id, name) {
+	var Competitor = function(id, name, sliderImage) {
 		this.id = id;
 		this.name = name;
+		this.sliderImage = sliderImage;
 		this.donationStatus = new Array();
 	}
 
@@ -42,7 +43,7 @@
 		var donations;
 
 		<% @competitors.each do |c| %>
-		competitors["<%= c.id %>"] = new Competitor("<%= c.id %>", "<%= c.name %>");
+		competitors["<%= c.id %>"] = new Competitor("<%= c.id %>", "<%= c.name %>", "<%= c.image_url %>");
 		<% @data[c.id].sort.reverse.each do |value,taken| %>
 		competitors["<%= c.id %>"].donationStatus.push(new DonationStatus("<%= Time.at(value*60).gmtime.strftime('%l hr %M min') %>", <%= value %>, <%= taken %>));
 		<% end %> 
@@ -300,13 +301,15 @@
 		var slider_max = <%= @values.length %> -1;
 		var slider_step = 1;
 
-		var updateSliderLabel = function(index, sliderEl) {
+		var updateSliderLabel = function(index, sliderEl, setImage) {
 			var cid = sliderEl.data("competitor-id");
 			var competitor = competitors[cid];
 			var donationStatus = competitor.donationStatus[index];
 			var donationText = donationStatus.donationText;
 			var sliderHandleEl = sliderEl.children(".ui-slider-handle,a");
-
+			if (setImage) {
+				sliderHandleEl.css("background-image", "url(../images/"+competitor.sliderImage+")");
+			}
 			if (donationStatus.choiceTaken) {
 				//sliderLabelEl.html("<span>" + donationText + "</span> is taken");
 				//sliderHandleEl.html(donationText+"<br />is taken");
@@ -331,13 +334,13 @@
 			max: slider_max,
 			step: slider_step,
 			create: function(event, ui) {
-				updateSliderLabel(slider_max, $(this));
+				updateSliderLabel(slider_max, $(this), true);
 			},
 			start: function(event, ui){
 
 			},
 			slide: function(event, ui){
-				updateSliderLabel(ui.value, $(this));
+				updateSliderLabel(ui.value, $(this), false);
 			},
 			stop: function(event, ui){
 
