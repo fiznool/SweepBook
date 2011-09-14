@@ -106,9 +106,7 @@
 							var competitor = competitors[cid];
 							var donationStatus = competitor.donationStatus[$(this).slider('value')];
 							if (!donationStatus.choiceTaken) {
-								//var facebook_id = response.id; 
-								var facebook_id="1234"
-								choicesArray.push(new DonationChoice(cid, donationStatus.donationValue, facebook_id));
+								choicesArray.push(new DonationChoice(cid, donationStatus.donationValue, response.id));
 							}
 						}
 					});
