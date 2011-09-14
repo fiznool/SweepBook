@@ -1,0 +1,11 @@
+ToDo
+ - App content + pictures
+ - JustGiving content
+ - Test…!
+
+ 
+ - Different times for each competitor
+ - Text / visuals spruce up
+ - A hrefs for modal and close (look at jQuery UI demo, they do this
+ - Help section
+ - Google Analytics?
