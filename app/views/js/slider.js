@@ -289,8 +289,7 @@
 			$("#donate-action-finish-btn").hide();
 
 			// Refresh the page
-			//window.location.reload();	// This causes IE to pop up an annoying message
-			window.location = window.location;	// TODO don't refresh the page, just update the donation status objects
+			window.location.reload();	// This causes IE to pop up an annoying message. Need to fix
 		});
 
 		$(".warning-alert-close").click(function() {
