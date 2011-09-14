@@ -5,8 +5,14 @@
 	</header>
 
 	<div id="main" role="main">
-		<div id="warning-alert" class="alert-message warning">
-			<a id="warning-alert-close" class="close" href="#">&times;</a>
+		<!--[if lt IE 9]> 
+			<div id="browser-warning" class="alert-message error">
+				<a class="close warning-alert-close" href="#">&times;</a>
+				<p><strong>Sorry about this.</strong> It looks like you are using an older version of Internet Explorer. By all means, please continue - but we can't guarantee everything will work. For the best experience, please upgrade to Internet Explorer version 9, or use Google Chrome.</p>
+			</div>
+		<![endif]-->
+		<div id="warning-alert" class="alert-message warning warning-alert">
+			<a class="close warning-alert-close" href="#">&times;</a>
 			<p id="warning-alert-msg-already-taken" class="warning-alert-msg"><strong>Whoops!</strong> Looks like you chose a time that is already taken. Use the slider to choose a free slot, and try again...</p>
 			<p id="warning-alert-msg-none-selected" class="warning-alert-msg"><strong>Whoops!</strong> You need to select at least one runner to enter...</p>
 		</div>

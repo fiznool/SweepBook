@@ -2,7 +2,8 @@ ToDo
  - JustGiving content
  - Test…!
  - JustGiving button move down
-
+ - IE reload pop-up
+ - Width: too big (scrollbar)
  
  - Different times for each competitor
  - A hrefs for modal and close (look at jQuery UI demo, they do this

@@ -292,8 +292,8 @@
 			window.location.reload();
 		});
 
-		$("#warning-alert-close").click(function() {
-			$("#warning-alert:visible").hide("blind", { direction: "vertical" }, 200);
+		$(".warning-alert-close").click(function() {
+			$(this).parent(".alert-message").hide("blind", { direction: "vertical" }, 200);
 		});
 
 		
