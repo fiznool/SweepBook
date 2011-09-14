@@ -289,7 +289,8 @@
 			$("#donate-action-finish-btn").hide();
 
 			// Refresh the page
-			window.location.reload();
+			//window.location.reload();	// This causes IE to pop up an annoying message
+			window.location = window.location;	// TODO don't refresh the page, just update the donation status objects
 		});
 
 		$(".warning-alert-close").click(function() {
