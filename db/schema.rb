@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(:version => 20110914134453) do
     t.string   "name"
     t.datetime "date"
     t.text     "info"
-    t.boolean  "forcewallpostsoff"        
+    t.boolean  "forcewallpostsoff"
     t.boolean  "forceanonymousdonations"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -259,8 +259,9 @@ td { vertical-align: top; }
 }
 
 #event-info p {
-  margin-bottom: inherit;
-  margin-right: inherit;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-align: left;
 }
 
 #modal_fade_overlay {
