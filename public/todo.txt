@@ -1,9 +1,7 @@
 ToDo
-  - Visuals for free/taken slots
-		- marker next to slider?
- - Step 1: show/hide continue button for fb login
- - Stage 4 and finish (reload page? redirect to fb.com?)
- 
+ - App content
+ - JustGiving content
+ - Test…!
  
 - Facebook authentication:
    - Use modal
