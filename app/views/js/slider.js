@@ -10,11 +10,11 @@
 		this.name = name;
 		this.donationStatus = new Array();
 	}
-	
+
 	Competitor.prototype = {
 		toString: function() { return this.name; }
 	}
-	
+
 	var DonationStatus = function(donationText, donationValue, choiceTaken) {
 		this.donationText = donationText;
 		this.donationValue = donationValue;
@@ -112,7 +112,7 @@
 							}
 						}
 					});
-					
+
 
 					$.ajax({
 						type: 'POST',
@@ -141,48 +141,12 @@
 
 				break;
 				case 4:
-<<<<<<< HEAD
 
-				for ( var i = 0; i < donations.length; i++) 
-				{
-					var params = {};
-					params['name'] = 'Sweepbook Donation';
-					params['description'] = 'A Sweepbook Donation';
-					params['link'] = 'http://apps.facebook.com/155060017912139/';
-=======
-                                        var post_params = {};
-                                        post_params['name'] = 'I Donated to Joe and Spen for the <%= @event.name %> using SweepBook';
-                                        post_params['link'] = 'http://apps.facebook.com/155060017912139/';
-                                        post_params['description'] = 'On SweepBook I backed Joe and Spen in the <%= @event.name %>. ' +
-                                                                     'Joe and Spen are raising money for the MS Trust using Sweepbook - click above and you can '+
-                                                                     'play along too!';
-					for ( var i = 0; i < donations.length; i++) 
-					{
-                                        } 
-                                        FB.api('/me/feed','post',post_params,function(response) {
-                                          if (!response || response.error) {
-					    alert('Error occured');
-					  }
-                                        }); 
-                                           
-					$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
-					$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
->>>>>>> 8a3a7528f7ff9db12bd5491b6e62b5ff3611f25d
-
-					FB.api('/me/feed','post',params,function(response) {
-						if (!response || response.error) {
-							alert('Error occured');
-						}
-					}); 
-
-				}
 				$("#donate-label-step"+donate_action_current_step).removeClass("donate-step-current");
 				$("#donate-action-step"+donate_action_current_step).removeClass("donate-action-current-step");
 
 				$("#donate-action-next-btn").hide();
 				$("#donate-action-finish-btn").show();
-
-
 
 				donate_action_current_step = move_to;
 
@@ -252,14 +216,14 @@
 					}
 				} 
 			});
-			
+
 			if (!atLeastOneSliderIsActive) {
 				showWarningAlert($("#warning-alert-msg-none-selected"));
 			} else if (cidTaken.length > 0) {
 				// Only show if not already shown
 				showWarningAlert($("#warning-alert-msg-already-taken"));
 				/*for ( var i=cidTaken.length-1; i>=0; --i ){
-					$("#slider-label-"+cidTaken[i]).effect("bounce", { times:3 }, 300);
+				$("#slider-label-"+cidTaken[i]).effect("bounce", { times:3 }, 300);
 				}*/
 			} else {
 				$("#warning-alert:visible").hide();
@@ -298,6 +262,29 @@
 			$("#warning-alert:hidden").show("blind", { direction: "vertical" }, 500);
 		}
 
+		$("#donate-action-finish-btn").click(function() {
+			$("#donate-action-finish-btn").hide();
+			if ($("#wallpost-checkbox").attr('checked')) {
+				show_spinner();
+				var post_params = {};
+				post_params['name'] = 'I Donated to Joe and Spen for the <%= @event.name %> using SweepBook';
+				post_params['link'] = 'http://apps.facebook.com/155060017912139/';
+				post_params['description'] = 'On SweepBook I backed Joe and Spen in the <%= @event.name %>. ' +
+				'Joe and Spen are raising money for the MS Trust using Sweepbook - click above and you can '+
+				'play along too!';
+
+				FB.api('/me/feed','post',post_params,function(response) {
+					// Close the modal and refresh the page
+					// Simulate a modal mouse click
+					$(".modal-dismiss").click();
+				});
+			} else {
+				$(".modal-dismiss").click();
+			}
+
+		});
+
+
 		$(".modal-dismiss").click(function() {
 			hide_spinner();
 			$("#donate-action-finish-btn").hide();
@@ -330,7 +317,7 @@
 			var donationStatus = competitor.donationStatus[index];
 			var donationText = donationStatus.donationText;
 			var sliderHandleEl = sliderEl.children(".ui-slider-handle,a");
-			
+
 			if (donationStatus.choiceTaken) {
 				//sliderLabelEl.html("<span>" + donationText + "</span> is taken");
 				sliderHandleEl.html(donationText+"<br />is taken");
@@ -345,7 +332,7 @@
 
 		}
 
-		
+
 		$(".sweep-slider").slider( {
 			orientation: 'vertical',
 			value: slider_max,
@@ -356,13 +343,13 @@
 				updateSliderLabel(slider_max, $(this));
 			},
 			start: function(event, ui){
-				
+
 			},
 			slide: function(event, ui){
 				updateSliderLabel(ui.value, $(this));
 			},
 			stop: function(event, ui){
-				
+
 			}
 		});
 
@@ -385,27 +372,4 @@
 
 	});
 
-	})(jQuery);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+})(jQuery);

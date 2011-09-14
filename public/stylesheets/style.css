@@ -389,12 +389,21 @@ td { vertical-align: top; }
 	display: none;
 }
 
+#donate-action-zone div label{
+	float: none;
+	line-height: 40px;
+}
+
 #donate-action-zone div.donate-action-current-step {
 	display: block;
 }
 
 #donate-action-finish-btn {
 	display: none;
+}
+
+.btn-well {
+	padding-top: 20px;
 }
 
 #donate-loading-spinner {

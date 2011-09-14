@@ -1,4 +1,5 @@
 ToDo
+<<<<<<< HEAD
   - Visuals for free/taken slots
 		- marker next to slider?
  - Link wall post to Finish button
@@ -6,6 +7,11 @@ ToDo
  - On finish - reload page 
  - One competitor donation not working
  - Handle Facebook wall post error
+=======
+ - App content
+ - JustGiving content
+ - TestÉ!
+>>>>>>> thank_bejeesus
  
 - Facebook authentication:
    - Use modal

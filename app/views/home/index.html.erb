@@ -14,9 +14,9 @@
 			<div id="sweep_table" class="span7 columns">
 				<!-- Here begins the sweep table, all contents in the #sweep_table div should be dynamically created on the server side -->
 
-				
+
 					<div id="sweep-table-header-row" class="row">
-						
+
 							<% @competitors.each do |c| %>
 							<div class="span3 columns sweep-table-competitor-name" data-competitor-id="<%= c.id %>">
 								<div class="input-prepend slider-competitor-label">
@@ -25,7 +25,7 @@
 								</div>
 							</div> <!-- Dynamic - enter up to 4 rows with competitor names -->
 							<% end %>
-						
+
 					</div>
 
 <!-- 
@@ -43,7 +43,7 @@
 						</div>
 						<% end %>
 					</div>
-				
+
 			</div> <!-- #sweep-table -->
 
 			<div id="sweep_actions" class="span6 columns">
@@ -91,7 +91,7 @@
 			<p>Before you confirm your choices, you need to connect to Facebook. This will let us contact you if you win the sweepstake.</p>
 			<p>To Connect with Facebook, click the button below.</p>
 			<!-- Put Facebook Connect button here! -->
-			
+
                         <fb:login-button perms="publish_stream,offline_access"
                           show-faces="true"></fb:login-button>
 			<a class="close-reveal-modal modal-dismiss">&#215;</a>
@@ -115,10 +115,14 @@
   <a id="donation-external-btn" class="btn primary donation-anchor" href= 'http://www.justgiving.com/GeeksGoRunning' alt='JustGiving - Sponsor me now!' target='blank'><img src='http://www.justgiving.com/App_Themes/JustGiving/images/badges/badge10.gif' width='270' height='50'></a>
 			</div>
 			<div id="donate-action-step4">
-				<h5>You are awesome.</h5>
-				<p>Thank you a thousand times for taking the time to donate to our good cause. Your money will help the MS Trust to continue their brilliant work.</p>
-				<p>We would like to post a short message to your wall, telling the world (or at least your friends) how generous you have been. This will also help us to get the word out about our run and hopefully raise more money for MS Trust.</p>
-				<h2>Need to work out what goes here...</h2>
+				<h5>All done!</h5>
+				<p>Thank you for taking the time to donate to our good cause. Your money will help the MS Trust to continue their brilliant work.</p>
+				<p>If it's not too cheeky, we would like to post a short message to your Facebook wall, telling the world (or at least your friends) how generous you have been. This will also help us to get the word out about our run and hopefully raise more money for MS Trust.</p>
+				<p>If you don't want to post to your wall, just uncheck the box below.</p>
+				<label>
+					<input id="wallpost-checkbox" type="checkbox" checked="checked">
+					<span>Post to my wall</span>
+				</label>
 			</div>
 			<div id="donate-action-ajax-error">
 				<h5>Oh dear, something went wrong.</h5>
@@ -128,7 +132,9 @@
 				<a id="donate-action-close-btn" href="#" class="btn primary modal-dismiss">Choose Again</a>
 			</div>
 		</div>
-		<div id="donate-loading-spinner"></div>
-		<a id="donate-action-next-btn" href="#" class="btn primary">Confirm</a>
-		<a id="donate-action-finish-btn" href="#" class="btn success modal-dismiss">Finish</a>
+		<div class="btn-well">
+			<div id="donate-loading-spinner"></div>
+			<a id="donate-action-next-btn" href="#" class="btn primary">Confirm</a>
+			<a id="donate-action-finish-btn" href="#" class="btn success">Finish</a>
+		</div>
 	</div> <!-- end of #donate-modal-reveal -->
