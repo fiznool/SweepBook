@@ -1,63 +1,50 @@
 <div id="container" class="container">
-	<header>
-		<h1 id="app_title" class="heading">All hail, mighty <strong>SweepBook</strong></h1>
-		<h1 class="heading"><small>When will our runners finish? Drag the slider and donate now!</small></h1>
+	<header class="page-header heading">
+		<h1>Welcome to Sweepbook</h1>
+		<h1><small>Guess where the competitors will finish to win a prize!</small></h1>
 	</header>
 
 	<div id="main" role="main">
 		<div id="warning-alert" class="alert-message warning">
-		    <a id="warning-alert-close" class="close" href="#">&times;</a>
-		    <p id="warning-alert-msg-already-taken" class="warning-alert-msg"><strong>Whoops!</strong> Looks like you chose a time that is already taken. Use the slider to choose a free slot, and try again...</p>
+			<a id="warning-alert-close" class="close" href="#">&times;</a>
+			<p id="warning-alert-msg-already-taken" class="warning-alert-msg"><strong>Whoops!</strong> Looks like you chose a time that is already taken. Use the slider to choose a free slot, and try again...</p>
 			<p id="warning-alert-msg-none-selected" class="warning-alert-msg"><strong>Whoops!</strong> You need to select at least one runner to enter...</p>
 		</div>
 		<div class="row">
-			<div id="sweep_table" class="span7 columns">
-				<!-- Here begins the sweep table, all contents in the #sweep_table div should be dynamically created on the server side -->
-
-
-					<div id="sweep-table-header-row" class="row">
-
-							<% @competitors.each do |c| %>
-							<div class="span3 columns sweep-table-competitor-name" data-competitor-id="<%= c.id %>">
-								<div class="input-prepend slider-competitor-label">
-									<label class="add-on active"><input type="checkbox" checked="checked"></label>
-									<span id="competitor-name-<%= c.id %>" class="uneditable-input competitor-name-active"><%= c.name %></span>
-								</div>
-							</div> <!-- Dynamic - enter up to 4 rows with competitor names -->
-							<% end %>
-
-					</div>
-
-<!-- 
-					<div class="row">
-						<% @competitors.each do |c| %>
-						<div id="slider-label-<%= c.id %>" data-competitor-id="<%= c.id %>" class="span3 columns slider-label"></div>
-						<% end %>
-					</div>
--->
-					<div class="row">
-						<% @competitors.each do |c| %>
-						<div class="span3 columns slider-ctn">
-							<div id="slider-<%= c.id %>" data-competitor-id="<%= c.id %>" class="sweep-slider"></div>
-							<div id="slider-bubble-label-<%= c.id %>" class="slider-bubble"></div>
+			<div class="span7 columns">
+				<div id="sweep-table-header-row" class="row">
+					<% @competitors.each do |c| %>
+					<div class="span3 columns sweep-table-competitor-name" data-competitor-id="<%= c.id %>">
+						<div class="input-prepend slider-competitor-label">
+							<label class="add-on active"><input type="checkbox" checked="checked"></label>
+							<span id="competitor-name-<%= c.id %>" class="uneditable-input competitor-name-active"><%= c.name %></span>
 						</div>
-						<% end %>
 					</div>
-
-			</div> <!-- #sweep-table -->
-
-			<div id="sweep_actions" class="span6 columns">
-				<div id="donate_btn_container">
+					<% end %>
+				</div>
+				<div class="row">
+					<% @competitors.each do |c| %>
+					<div class="span3 columns slider-ctn">
+						<div id="slider-<%= c.id %>" data-competitor-id="<%= c.id %>" class="sweep-slider"></div>
+					</div>
+					<% end %>
+				</div>
+			</div>
+			<div class="span6 columns">
+				<div id="donate-btn-well">
 					<!-- TODO make donate_btn link to donation modal using href, progressive enhancement -->
-					<a id="donate_btn" href="#" class="btn large success" style="width: 270px; margin: 0px 20px; text-align:center;">Enter Sweepstake</a>
+					<a id="donate-btn" href="#" class="btn large success" >Enter Sweepstake</a>
 				</div>
-				<div id="event_info" class="alert-message block-message info">
+				<div id="event-info" class="alert-message block-message info">
 					<!-- Dynamic: all content in the #event_info div should be pulled from the DB -->
-					<h3 class="heading"><%= @event.name %></h3>
-					<p class="event_info_para"><%= @event.info %></p>	
-					<%= image_tag "goulahee.jpg" %>
+					<h4 class="heading">Joe and Tom's Great North Run 2011</h3>
+					<p>Joe Woodhouse and Tom Spencer are running the Great North Run on 18th September, 2011. They are running in support of the MS Trust.</p>
+					<p>Sweepbook is a game where you guess how fast Joe and Tom will run the race. Slide the sliders to choose a time, and press the big green button above to enter the sweepstake.</p>
+					<p>You'll be asked to donate some money and help Joe and Tom get to their sponsorship target.</p>
+					<p>What are you waiting for? Give it a try!</p>	
+					<%= image_tag "IMAG0057.jpg" %>
 				</div>
-			</div> <!-- #sweep_actions -->
+			</div>
 		</div> <!-- end of row -->
 	</div> <!-- end of #main -->
 </div> <!--! end of #container -->
@@ -87,36 +74,32 @@
 	</ul>
 	<div id="donate-action-zone">
 		<div id="donate-action-step1">
-			<h5>Shake hands with Facebook</h5>
+			<h5>Connect to Facebook</h5>
 			<p>Before you confirm your choices, you need to connect to Facebook. This will let us contact you if you win the sweepstake.</p>
-			<p>To Connect with Facebook, click the button below.</p>
-			<!-- Put Facebook Connect button here! -->
-
-                        <fb:login-button perms="publish_stream,offline_access"
-                          show-faces="true"></fb:login-button>
+			<p>To do this, click the button below.</p>
+			<fb:login-button perms="publish_stream,offline_access" show-faces="true"></fb:login-button>
 			<a class="close-reveal-modal modal-dismiss">&#215;</a>
 		</div>
 		<div id="donate-action-step2">
 			<h5>You chose the following times:</h5>
-			<ul id="donation-modal-choices-list">
-				<!-- Filled in by JS -->
-			</ul>
+			<ul id="donation-modal-choices-list"></ul>
 			<p>If you are OK with these times, click the button below to proceed.</p>
 			<p>If you need to change your choices, just click the X in the top right hand corner of this pop-up box to return.</p>
 			<a class="close-reveal-modal modal-dismiss">&#215;</a>
 		</div>
 		<div id="donate-action-step3">
-			<h5>Hands in pockets time...</h5>
+			<h5>Donate to Charity</h5>
 			<p>Your choices have been saved... now, its time to donate!</p>
-			<p>We are running for the MS Trust, who are doing wonderful things for people with multiple sclerosis. We suggest that you donate £3 per choice you made, but any extra would be gratefully received.</p>
-			<p>We are using <strong><a class="donation-anchor" href="http://www.justgiving.com" target="blank">Just Giving</a></strong> to take your donation. Click on the button below to visit the JustGiving site.
+			<p>We are running for the MS Trust, who help people that suffer from multiple sclerosis. We suggest that you donate £3 per choice you made, but any extra would be gratefully received.</p>
+			<p>We are using <strong><a class="donation-anchor" href="http://www.justgiving.com/GeeksGoRunning" target="blank">Just Giving</a></strong> to take your donation. Click on the button below to visit the JustGiving site.
 				It will open a new window - once you've finished donating, come back here for the last step.</p>
-		<!--		<a id="donation-external-btn" class="btn primary donation-anchor" href="http://www.justgiving.com" target="blank">Donate on Just Giving site</a> -->
-  <a id="donation-external-btn" class="btn primary donation-anchor" href= 'http://www.justgiving.com/GeeksGoRunning' alt='JustGiving - Sponsor me now!' target='blank'><img src='http://www.justgiving.com/App_Themes/JustGiving/images/badges/badge10.gif' width='270' height='50'></a>
+				<!--		<a id="donation-external-btn" class="btn primary donation-anchor" href="http://www.justgiving.com" target="blank">Donate on Just Giving site</a> -->
+				<a id="donation-external-btn" class="btn primary donation-anchor" href= 'http://www.justgiving.com/GeeksGoRunning' alt='JustGiving - Sponsor me now!' target='blank'><img src='http://www.justgiving.com/App_Themes/JustGiving/images/badges/badge10.gif' width='270' height='50'></a>
 			</div>
 			<div id="donate-action-step4">
 				<h5>All done!</h5>
 				<p>Thank you for taking the time to donate to our good cause. Your money will help the MS Trust to continue their brilliant work.</p>
+				<p>The race takes place on 18th September. We will let you know afterwards what time we achieved and whether you won the sweepstake!</p>
 				<p>If it's not too cheeky, we would like to post a short message to your Facebook wall, telling the world (or at least your friends) how generous you have been. This will also help us to get the word out about our run and hopefully raise more money for MS Trust.</p>
 				<p>If you don't want to post to your wall, just uncheck the box below.</p>
 				<label>
@@ -134,7 +117,7 @@
 		</div>
 		<div class="btn-well">
 			<div id="donate-loading-spinner"></div>
-			<a id="donate-action-next-btn" href="#" class="btn primary">Confirm</a>
+			<a id="donate-action-next-btn" href="#" class="btn primary">Next</a>
 			<a id="donate-action-finish-btn" href="#" class="btn success">Finish</a>
 		</div>
 	</div> <!-- end of #donate-modal-reveal -->

@@ -198,7 +198,7 @@
 			$("#donate-action-next-btn").show();
 		});
 
-		$("#donate_btn").click(function() {
+		$("#donate-btn").click(function() {
 
 			var cidTaken = new Array();
 			var atLeastOneSliderIsActive = false;
@@ -297,16 +297,7 @@
 			$("#warning-alert:visible").hide("blind", { direction: "vertical" }, 200);
 		});
 
-		$(".sweep-dragger").draggable({ axis: 'y', containment: '#sweep_table'});
-		$(".sweep-free-cell").droppable({
-			drop: function() { $(this).addClass( "sweep-active-cell" ); },
-			out: function() { $(this).removeClass( "sweep-active-cell" ); },
-			hoverClass: 'sweep-hover-cell'
-		});
-
-
-
-
+		
 		var slider_min = 0;
 		var slider_max = <%= @values.length %> -1;
 		var slider_step = 1;

@@ -213,6 +213,7 @@ td { vertical-align: top; }
 
 .container {
   width: 760px;
+	margin-top: 10px;
 }
 
 .event_info_para {
@@ -221,6 +222,10 @@ td { vertical-align: top; }
 	
 .heading {
   text-align: center;
+}
+
+.heading h1 small{
+  color: #6F6F6F;
 }
 
 #warning-alert {
@@ -239,12 +244,23 @@ td { vertical-align: top; }
   text-align: right;
 }
 
-#donate_btn_container {
+#donate-btn {
+	width: 270px; 
+	margin: 0px 20px; 
+	text-align:center;
+}
+
+#donate-btn-well {
   margin: 10px 0px 30px 0px;
 }
 
-#event_info {
+#event-info {
   margin-top: 15px;
+}
+
+#event-info p {
+  margin-bottom: inherit;
+  margin-right: inherit;
 }
 
 #modal_fade_overlay {
@@ -336,10 +352,6 @@ td { vertical-align: top; }
 .sweep-drag-ctn {
 	padding: 0px 2px;
 }
-
-/*.sweep-table-competitor-name {
-	padding: 0px 2px;
-}*/
 
 .sweep-slider {
   height: 500px;
