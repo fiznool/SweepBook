@@ -1,14 +1,10 @@
 ToDo
- - App content + pictures
  - JustGiving content
  - Test…!
  - JustGiving button move down
- - Slider visuals improve
- - Reveal modal can be cancelled by pressing escape
 
  
  - Different times for each competitor
- - Text / visuals spruce up
  - A hrefs for modal and close (look at jQuery UI demo, they do this
  - Help section
  - Google Analytics?
