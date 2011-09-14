@@ -4,6 +4,7 @@ ToDo
  - Test…!
  - JustGiving button move down
  - Slider visuals improve
+ - Reveal modal can be cancelled by pressing escape
 
  
  - Different times for each competitor

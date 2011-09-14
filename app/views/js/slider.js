@@ -311,12 +311,14 @@
 
 			if (donationStatus.choiceTaken) {
 				//sliderLabelEl.html("<span>" + donationText + "</span> is taken");
-				sliderHandleEl.html(donationText+"<br />is taken");
+				//sliderHandleEl.html(donationText+"<br />is taken");
+				sliderHandleEl.html('<span class="ui-slider-tooltip ui-widget-content ui-corner-all">'+donationText+' is taken</span>');
 				//sliderLabelEl.addClass("slider-label-taken");
 				sliderHandleEl.css("color", "red");
 			} else {
 				//sliderLabelEl.html("<span>" + donationText + "</span> is free");
-				sliderHandleEl.html(donationText+"<br />is free");
+				//sliderHandleEl.html(donationText+"<br />is free");
+				sliderHandleEl.html('<span class="ui-slider-tooltip ui-widget-content ui-corner-all">'+donationText+' is free</span>');
 				//sliderLabelEl.removeClass("slider-label-taken");
 				sliderHandleEl.css("color", "");
 			}
