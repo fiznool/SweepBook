@@ -28,15 +28,19 @@
 						
 					</div>
 
+<!-- 
 					<div class="row">
 						<% @competitors.each do |c| %>
 						<div id="slider-label-<%= c.id %>" data-competitor-id="<%= c.id %>" class="span3 columns slider-label"></div>
 						<% end %>
 					</div>
-
+-->
 					<div class="row">
 						<% @competitors.each do |c| %>
-						<div class="span3 columns slider-ctn"><div id="slider-<%= c.id %>" data-competitor-id="<%= c.id %>" class="sweep-slider"></div></div>
+						<div class="span3 columns slider-ctn">
+							<div id="slider-<%= c.id %>" data-competitor-id="<%= c.id %>" class="sweep-slider"></div>
+							<div id="slider-bubble-label-<%= c.id %>" class="slider-bubble"></div>
+						</div>
 						<% end %>
 					</div>
 				

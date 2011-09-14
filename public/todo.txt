@@ -1,9 +1,11 @@
 ToDo
   - Visuals for free/taken slots
 		- marker next to slider?
- - Step 1: show/hide continue button for fb login
- - Stage 4 and finish (reload page? redirect to fb.com?)
- 
+ - Link wall post to Finish button
+ - Wall post opt out checkbox
+ - On finish - reload page 
+ - One competitor donation not working
+ - Handle Facebook wall post error
  
 - Facebook authentication:
    - Use modal
