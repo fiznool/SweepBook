@@ -43,36 +43,16 @@
   </head>
 
   <body>
-
-  <div id="fb-root"></div>
-  <script>
-    var fbApiInit = false;
-    window.fbAsyncInit = function() {
-      //var appId = '155060017912139';
-      var appId = '267611456596772';
-      FB.init({appId: appId, status: true, cookie: true,
-               xfbml: true});
-      fbApiInit = true;
-    };
-
-    function fbEnsureInit(callback) {
-      if(!window.fbApiInit){
-        setTimeout(function() { fbEnsureInit(callback);}, 50);
-      }else{
-        if(callback){
-          callback();
-        }
-      }
-    }
-
-    (function() {
-      var e = document.createElement('script'); e.async = true;
-      e.src = document.location.protocol +
-      '//connect.facebook.net/en_GB/all.js';
-      document.getElementById('fb-root').appendChild(e);
-    }());
-
-  </script> 
+	<div id="fb-root"></div>
+	    <script>
+	      (function() {
+	        var e = document.createElement('script');
+	        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+	        e.async = true;
+	        document.getElementById('fb-root').appendChild(e);
+	      }());
+	    </script>
+	
 
     <%= yield %>
 

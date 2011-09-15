@@ -1,0 +1,16 @@
+ToDo
+ - Facebook name/image link styling
+  - Image disappear bug
+ - Wall post link to display links to us
+ - Display name if no Facebook address
+
+
+ - JustGiving button move down
+ - IE reload pop-up
+ - IE 8 - cannot open the Internet site, operation aborted
+ - Width: too big (scrollbar)
+ 
+ - Different times for each competitor
+ - A hrefs for modal and close (look at jQuery UI demo, they do this
+ - Help section
+ - Google Analytics?
