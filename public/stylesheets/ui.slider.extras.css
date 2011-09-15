@@ -10,7 +10,7 @@
 .ui-slider .ui-slider-tooltip {
 	display: block;
 	position: absolute;
-	bottom: 6px;
+	top: 6px;
 	text-align: right;
 	padding: .2em;
 	font-size: .9em;

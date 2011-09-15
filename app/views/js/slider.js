@@ -92,7 +92,7 @@ var grabFacebookPics = function() {
 				if (d.donatorId) {
 					FB.api('/' + d.donatorId + '?fields=picture,name&type=square', function(r){ 
 						donators[r.id] = r;
-					});	
+					});
 				}
 			});
 		}
@@ -118,20 +118,7 @@ if(window.FB) {
 }
 
 
-
-
-
-
-
-
-
-
-
 $(document).ready(function() {
-
-
-
-
 
 	// Donation Modal logic
 	var donate_action_current_step = 1;

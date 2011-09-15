@@ -1,4 +1,8 @@
 ToDo
+ - Facebook name/image link styling
+ - First choice image bug
+ - Wall post link to display links to us
+ 
  - JustGiving button move down
  - IE reload pop-up
  - IE 8 - cannot open the Internet site, operation aborted
