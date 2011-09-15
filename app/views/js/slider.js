@@ -96,7 +96,9 @@ $(document).ready(function() {
 			}
 		});
 		
-		$.each($.unique(donatorIds), function(i, did) {
+		var uniqueIds = $.unique(donatorIds);
+		
+		$.each(uniqueIds, function(i, did) {
 			// Grab em
 			FB.api('/' + did + '?fields=picture,name&type=square', function(r){ 
 				donators[r.id] = r;
