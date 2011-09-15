@@ -431,7 +431,8 @@ td { vertical-align: top; }
 }
 
 #hall-of-fame span {
-	padding: 5px;
+	padding: 4px;
+	float: left;
 }
 
 
