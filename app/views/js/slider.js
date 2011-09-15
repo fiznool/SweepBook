@@ -80,46 +80,51 @@ var competitors = {
 }
 
 
-$.each(competitors, function(i, c) { 
-	console.log("root " + i + " " + c);
-});
-
-var grabFacebookPics = function() {
-	
-	$.each(competitors, function(i, c) { 
-		if (c !== undefined) {
-			$.each(c.donationStatus, function(j, d) {
-				if (d.donatorId) {
-					FB.api('/' + d.donatorId + '?fields=picture,name&type=square', function(r){ 
-						donators[r.id] = r;
-					});
-				}
-			});
-		}
-	});	
-	
-}
-
-var facebookReady = function () {
-	FB.init({
-		appId  : '155060017912139',
-		status : true,
-		cookie : true,
-		xfbml  : true
-	});
-	//$(document).trigger("facebook:ready");
-	grabFacebookPics();
-}
-
-if(window.FB) {
-	facebookReady();
-} else {
-	window.fbAsyncInit = facebookReady;
-}
-
-
 $(document).ready(function() {
 
+	var grabFacebookPics = function() {
+		
+		var donatorIds = [ ];
+
+		$.each(competitors, function(i, c) { 
+			if (c !== undefined) {
+				$.each(c.donationStatus, function(j, d) {
+					if (d.donatorId) {
+						donatorIds.push(d.donatorId);
+					}
+				});
+			}
+		});
+		
+		$.each($.unique(donatorIds), function(i, did) {
+			// Grab em
+			FB.api('/' + did + '?fields=picture,name&type=square', function(r){ 
+				donators[r.id] = r;
+				
+				// Put in hall of fame
+				$("#hall-of-fame").append('<span><img src="'+r.picture+'" alt="'+r.name+'"/></span>')
+			});
+		});
+
+	}
+
+	var facebookReady = function () {
+		FB.init({
+			appId  : '155060017912139',
+			status : true,
+			cookie : true,
+			xfbml  : true
+		});
+		//$(document).trigger("facebook:ready");
+		grabFacebookPics();
+	}
+
+	if(window.FB) {
+		facebookReady();
+	} else {
+		window.fbAsyncInit = facebookReady;
+	}
+	
 	// Donation Modal logic
 	var donate_action_current_step = 1;
 

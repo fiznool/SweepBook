@@ -430,6 +430,10 @@ td { vertical-align: top; }
 	margin-left: -310px;
 }
 
+#hall-of-fame span {
+	padding: 5px;
+}
+
 
 
 /* ==|== non-semantic helper classes ========================================
