@@ -96,9 +96,7 @@ $(document).ready(function() {
 			}
 		});
 		
-		var uniqueIds = $.unique(donatorIds);
-		
-		$.each(uniqueIds, function(i, did) {
+		$.each($.unique(donatorIds), function(i, did) {		// Standard jQuery unique() must be enhanced, see http://paulirish.com/2010/duck-punching-with-jquery/
 			// Grab em
 			FB.api('/' + did + '?fields=picture,name&type=square', function(r){ 
 				donators[r.id] = r;
